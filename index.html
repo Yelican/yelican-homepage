@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一只鹈鹕的主页</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    background: linear-gradient(160deg, #fdf6e3 0%, #f5e6d3 30%, #e8d5c4 60%, #d4e4f7 100%);
+    font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* ── 波浪背景 ── */
+  .waves {
+    position: fixed; bottom: 0; left: 0; width: 100%; height: 120px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120'%3E%3Cpath fill='%2390b8d0' fill-opacity='0.25' d='M0,64L48,74.7C96,85,192,107,288,106.7C384,107,480,85,576,74.7C672,64,768,64,864,74.7C960,85,1056,107,1152,106.7C1248,107,1344,85,1392,74.7L1440,64L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z'/%3E%3C/svg%3E") repeat-x bottom;
+    background-size: 1440px 120px;
+    animation: waveMove 8s ease-in-out infinite alternate;
+    z-index: 0;
+  }
+  .waves::after {
+    content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 100px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120'%3E%3Cpath fill='%237ca5c0' fill-opacity='0.15' d='M0,96L48,85.3C96,75,192,53,288,48C384,43,480,53,576,69.3C672,85,768,107,864,106.7C960,107,1056,85,1152,74.7C1248,64,1344,64,1392,64L1440,64L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z'/%3E%3C/svg%3E") repeat-x bottom;
+    background-size: 1440px 100px;
+    animation: waveMove 6s ease-in-out infinite alternate-reverse;
+  }
+  @keyframes waveMove {
+    0% { background-position-x: 0; }
+    100% { background-position-x: 120px; }
+  }
+
+  /* ── 浮动云朵 ── */
+  .cloud { position: fixed; background: rgba(255,255,255,0.6); border-radius: 50%; z-index: 0; }
+  .cloud::before, .cloud::after {
+    content: ''; position: absolute; background: rgba(255,255,255,0.6); border-radius: 50%;
+  }
+  .cloud-1 { width: 180px; height: 60px; top: 8%; left: -200px; animation: cloudDrift 25s linear infinite; }
+  .cloud-1::before { width: 80px; height: 80px; top: -40px; left: 30px; }
+  .cloud-1::after  { width: 100px; height: 70px; top: -30px; left: 70px; }
+  .cloud-2 { width: 220px; height: 70px; top: 18%; left: -220px; animation: cloudDrift 30s linear infinite 8s; }
+  .cloud-2::before { width: 90px; height: 90px; top: -50px; left: 40px; }
+  .cloud-2::after  { width: 120px; height: 80px; top: -35px; left: 90px; }
+  @keyframes cloudDrift {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(calc(100vw + 400px)); }
+  }
+
+  /* ── 主卡片 ── */
+  .card {
+    position: relative; z-index: 1;
+    text-align: center; padding: 48px 56px;
+    background: rgba(255,255,255,0.45);
+    backdrop-filter: blur(16px);
+    border-radius: 32px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+    border: 1px solid rgba(255,255,255,0.6);
+    max-width: 520px; width: 90%;
+    animation: fadeUp 1s ease-out;
+  }
+  @keyframes fadeUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  .avatar {
+    width: 100px; height: 100px; margin: 0 auto 16px;
+    position: relative;
+  }
+  .avatar svg { width: 100%; height: 100%; }
+
+  h1 {
+    font-size: 28px; font-weight: 700;
+    color: #2d3436; margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+  .subtitle {
+    font-size: 16px; color: #636e72;
+    margin-bottom: 28px; line-height: 1.7;
+  }
+  .subtitle span { display: inline-block; }
+  .cursor { animation: blink 1s step-end infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .tags {
+    display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+    margin-bottom: 28px;
+  }
+  .tag {
+    padding: 6px 18px; border-radius: 20px;
+    font-size: 13px; background: rgba(255,255,255,0.5);
+    color: #2d3436; border: 1px solid rgba(0,0,0,0.06);
+    transition: all 0.2s;
+  }
+  .tag:hover { background: rgba(255,255,255,0.8); transform: scale(1.05); }
+
+  .divider {
+    width: 40px; height: 3px; margin: 0 auto 24px;
+    background: linear-gradient(90deg, #e17055, #fdcb6e);
+    border-radius: 4px;
+  }
+
+  .links { display: flex; gap: 16px; justify-content: center; }
+  .links a {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 10px 24px; border-radius: 24px;
+    text-decoration: none; font-size: 14px; font-weight: 500;
+    transition: all 0.25s;
+    background: rgba(255,255,255,0.5); color: #2d3436;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  .links a:hover {
+    background: #2d3436; color: #fff;
+    transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  }
+
+  /* ── 鹈鹕动画区 ── */
+  .pelican-area {
+    position: fixed; bottom: 100px; left: 0; width: 100%; height: 150px;
+    z-index: 1; pointer-events: none;
+  }
+
+  .pelican {
+    position: absolute; bottom: 0;
+    animation: pelicanWalk 12s linear infinite;
+    opacity: 0.85;
+  }
+  .pelican:nth-child(1) { left: -100px; animation-duration: 14s; bottom: 10px; }
+  .pelican:nth-child(2) { left: -100px; animation-duration: 18s; animation-delay: 3s; bottom: 30px; transform: scale(0.75); }
+  .pelican:nth-child(3) { left: -100px; animation-duration: 22s; animation-delay: 7s; bottom: 5px; transform: scale(0.55); opacity: 0.6; }
+
+  @keyframes pelicanWalk {
+    0%   { transform: translateX(0) translateY(0); }
+    25%  { transform: translateX(25vw) translateY(-12px); }
+    50%  { transform: translateX(55vw) translateY(0); }
+    75%  { transform: translateX(75vw) translateY(-8px); }
+    100% { transform: translateX(calc(100vw + 120px)) translateY(0); }
+  }
+
+  .pelican-body {
+    animation: bob 0.6s ease-in-out infinite alternate;
+    transform-origin: center bottom;
+  }
+  @keyframes bob {
+    0%   { transform: rotate(-3deg) translateY(0); }
+    100% { transform: rotate(3deg) translateY(-4px); }
+  }
+
+  .pelican .wing {
+    animation: flap 1.2s ease-in-out infinite alternate;
+    transform-origin: 40px 15px;
+  }
+  @keyframes flap {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(-25deg); }
+  }
+
+  .pelican:nth-child(2) .wing { animation-duration: 1.5s; }
+  .pelican:nth-child(3) .wing { animation-duration: 1.8s; }
+
+  /* ── 飞行的鹈鹕 ── */
+  .pelican-fly {
+    position: fixed; z-index: 0; pointer-events: none;
+    animation: flyAcross 20s linear infinite;
+    opacity: 0.3;
+  }
+  .pelican-fly:nth-child(1) { top: 12%; left: -150px; animation-duration: 25s; }
+  .pelican-fly:nth-child(2) { top: 22%; left: -150px; animation-duration: 32s; animation-delay: 10s; transform: scale(0.6); }
+
+  @keyframes flyAcross {
+    0%   { transform: translateX(0) translateY(0) scaleX(1); }
+    50%  { transform: translateX(50vw) translateY(-20px) scaleX(1); }
+    100% { transform: translateX(calc(100vw + 200px)) translateY(0) scaleX(1); }
+  }
+
+  .fly-wing {
+    animation: flyFlap 0.8s ease-in-out infinite alternate;
+    transform-origin: 35px 10px;
+  }
+  @keyframes flyFlap {
+    0%   { transform: rotate(15deg); }
+    100% { transform: rotate(-35deg); }
+  }
+
+  /* ── 小信条 ── */
+  .footer-note {
+    position: fixed; bottom: 24px; z-index: 2;
+    font-size: 13px; color: rgba(0,0,0,0.25);
+    letter-spacing: 0.5px;
+  }
+
+  @media (max-width: 480px) {
+    .card { padding: 32px 24px; }
+    h1 { font-size: 22px; }
+    .links { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 云朵 -->
+<div class="cloud cloud-1"></div>
+<div class="cloud cloud-2"></div>
+
+<!-- 波浪 -->
+<div class="waves"></div>
+
+<!-- 飞行的鹈鹕 -->
+<div class="pelican-fly">
+  <svg viewBox="0 0 80 50" width="100" height="62">
+    <g class="fly-wing">
+      <ellipse cx="35" cy="12" rx="28" ry="8" fill="#5a4a3a" opacity="0.7"/>
+    </g>
+    <ellipse cx="40" cy="28" rx="18" ry="10" fill="#7a6a5a"/>
+    <ellipse cx="55" cy="25" rx="12" ry="6" fill="#e8a84c"/>
+    <circle cx="62" cy="24" r="2" fill="#2d3436"/>
+    <path d="M68 24 Q75 22 78 26 Q74 28 68 26Z" fill="#c07830"/>
+    <ellipse cx="40" cy="35" rx="6" ry="4" fill="#6a5a4a"/>
+  </svg>
+</div>
+<div class="pelican-fly">
+  <svg viewBox="0 0 80 50" width="80" height="50">
+    <g class="fly-wing">
+      <ellipse cx="35" cy="12" rx="28" ry="8" fill="#5a4a3a" opacity="0.7"/>
+    </g>
+    <ellipse cx="40" cy="28" rx="18" ry="10" fill="#7a6a5a"/>
+    <ellipse cx="55" cy="25" rx="12" ry="6" fill="#e8a84c"/>
+    <circle cx="62" cy="24" r="2" fill="#2d3436"/>
+    <path d="M68 24 Q75 22 78 26 Q74 28 68 26Z" fill="#c07830"/>
+  </svg>
+</div>
+
+<!-- 主卡片 -->
+<div class="card">
+  <div class="avatar">
+    <svg viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg">
+      <g class="pelican-body">
+        <!-- 身体 -->
+        <ellipse cx="50" cy="60" rx="32" ry="28" fill="#f0e6d3"/>
+        <ellipse cx="50" cy="60" rx="32" ry="28" fill="none" stroke="#d4c4a8" stroke-width="1.5"/>
+        <!-- 翅膀 -->
+        <path d="M28 50 Q15 40 20 30 Q25 28 30 38Z" fill="#e8d8c4" stroke="#d4c4a8" stroke-width="1"/>
+        <path d="M72 50 Q85 40 80 30 Q75 28 70 38Z" fill="#e8d8c4" stroke="#d4c4a8" stroke-width="1"/>
+        <!-- 尾巴 -->
+        <path d="M22 70 Q12 72 8 68 Q14 65 22 68Z" fill="#d4c4a8"/>
+        <!-- 脖子 -->
+        <ellipse cx="50" cy="38" rx="14" ry="16" fill="#f5ede2"/>
+        <ellipse cx="50" cy="38" rx="14" ry="16" fill="none" stroke="#d4c4a8" stroke-width="1"/>
+        <!-- 头 -->
+        <circle cx="50" cy="22" r="16" fill="#f5ede2" stroke="#d4c4a8" stroke-width="1"/>
+        <!-- 眼睛 -->
+        <circle cx="56" cy="18" r="3.5" fill="#2d3436"/>
+        <circle cx="57.5" cy="17" r="1.2" fill="#fff"/>
+        <!-- 喙 - 大鹈鹕标志 -->
+        <path d="M64 22 Q85 18 90 28 Q86 32 68 30Z" fill="#e8a84c" stroke="#c07830" stroke-width="1"/>
+        <path d="M64 22 Q80 22 85 25" fill="none" stroke="#c07830" stroke-width="0.5"/>
+        <!-- 下喙袋 -->
+        <path d="M68 30 Q78 35 82 32 Q75 38 66 34Z" fill="#f0c060" stroke="#c07830" stroke-width="0.5" opacity="0.8"/>
+        <!-- 腿 -->
+        <line x1="40" y1="84" x2="38" y2="94" stroke="#e0a040" stroke-width="3" stroke-linecap="round"/>
+        <line x1="60" y1="84" x2="62" y2="94" stroke="#e0a040" stroke-width="3" stroke-linecap="round"/>
+        <!-- 脚 -->
+        <path d="M33 94 Q38 96 43 94" fill="none" stroke="#e0a040" stroke-width="2" stroke-linecap="round"/>
+        <path d="M57 94 Q62 96 67 94" fill="none" stroke="#e0a040" stroke-width="2" stroke-linecap="round"/>
+      </g>
+    </svg>
+  </div>
+
+  <h1>一只鹈鹕🐦</h1>
+  <div class="divider"></div>
+  <p class="subtitle">
+    <span>这里是一只鹈鹕不知名的主页</span><br>
+    <span>还没想好干什么</span>
+    <span class="cursor">▍</span>
+  </p>
+
+  <div class="tags">
+    <span class="tag">🐟 爱吞鱼</span>
+    <span class="tag">🌊 喜欢水</span>
+    <span class="tag">☀️ 晒太阳</span>
+    <span class="tag">🤔 思考鸟生</span>
+  </div>
+
+  <div class="links">
+    <a href="https://github.com/Yelican" target="_blank">🐙 GitHub</a>
+  </div>
+</div>
+
+<!-- 地面行走的鹈鹕 -->
+<div class="pelican-area">
+  <div class="pelican">
+    <svg viewBox="0 0 70 50" width="70" height="50">
+      <g>
+        <ellipse cx="35" cy="35" rx="22" ry="18" fill="#f0e6d3"/>
+        <path class="wing" d="M22 30 Q10 18 15 12 Q18 12 22 24Z" fill="#e8d8c4"/>
+        <ellipse cx="35" cy="20" rx="11" ry="12" fill="#f5ede2"/>
+        <circle cx="35" cy="12" r="11" fill="#f5ede2"/>
+        <circle cx="40" cy="10" r="2.5" fill="#2d3436"/>
+        <path d="M45 12 Q58 10 62 16 Q56 18 46 16Z" fill="#e8a84c"/>
+        <path d="M46 16 Q52 20 56 18 Q50 22 44 20Z" fill="#f0c060" opacity="0.8"/>
+        <line x1="28" y1="50" x2="26" y2="56" stroke="#e0a040" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="42" y1="50" x2="44" y2="56" stroke="#e0a040" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M22 56 Q26 58 30 56" fill="none" stroke="#e0a040" stroke-width="2" stroke-linecap="round"/>
+        <path d="M40 56 Q44 58 48 56" fill="none" stroke="#e0a040" stroke-width="2" stroke-linecap="round"/>
+      </g>
+    </svg>
+  </div>
+  <div class="pelican">
+    <svg viewBox="0 0 70 50" width="60" height="42">
+      <g>
+        <ellipse cx="35" cy="35" rx="20" ry="16" fill="#f0e6d3"/>
+        <path class="wing" d="M24 28 Q14 18 18 12 Q20 12 24 22Z" fill="#e8d8c4"/>
+        <ellipse cx="35" cy="20" rx="10" ry="10" fill="#f5ede2"/>
+        <circle cx="35" cy="12" r="10" fill="#f5ede2"/>
+        <circle cx="39" cy="10" r="2" fill="#2d3436"/>
+        <path d="M44 12 Q55 10 58 16 Q54 18 44 16Z" fill="#e8a84c"/>
+        <line x1="29" y1="48" x2="27" y2="54" stroke="#e0a040" stroke-width="2" stroke-linecap="round"/>
+        <line x1="41" y1="48" x2="43" y2="54" stroke="#e0a040" stroke-width="2" stroke-linecap="round"/>
+      </g>
+    </svg>
+  </div>
+  <div class="pelican">
+    <svg viewBox="0 0 70 50" width="45" height="32">
+      <g>
+        <ellipse cx="35" cy="35" rx="18" ry="14" fill="#f0e6d3"/>
+        <path class="wing" d="M24 28 Q14 18 18 12 Q20 12 24 22Z" fill="#e8d8c4"/>
+        <ellipse cx="35" cy="20" rx="9" ry="9" fill="#f5ede2"/>
+        <circle cx="35" cy="12" r="9" fill="#f5ede2"/>
+        <circle cx="39" cy="10" r="1.8" fill="#2d3436"/>
+        <path d="M43 12 Q53 10 56 16 Q52 18 43 16Z" fill="#e8a84c"/>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<div class="footer-note">🐦 一只鹈鹕的互联网小窝</div>
+
+</body>
+</html>

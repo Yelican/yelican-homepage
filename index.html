@@ -3,117 +3,354 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>鹈鹕树洞</title>
+<title>一只鹈鹕的主页</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 90'%3E%3Cellipse cx='50' cy='60' rx='32' ry='28' fill='%23f0e6d3' stroke='%23d4c4a8' stroke-width='1.5'/%3E%3Ccircle cx='50' cy='22' r='16' fill='%23f5ede2' stroke='%23d4c4a8' stroke-width='1'/%3E%3Ccircle cx='56' cy='18' r='3.5' fill='%232d3436'/%3E%3Ccircle cx='57.5' cy='17' r='1.2' fill='%23fff'/%3E%3Cpath d='M64 22 Q85 18 90 28 Q86 32 68 30Z' fill='%23e8a84c' stroke='%23c07830' stroke-width='1'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 90'%3E%3Cellipse cx='50' cy='60' rx='32' ry='28' fill='%23f0e6d3' stroke='%23d4c4a8' stroke-width='1.5'/%3E%3Ccircle cx='50' cy='22' r='16' fill='%23f5ede2' stroke='%23d4c4a8' stroke-width='1'/%3E%3Ccircle cx='56' cy='18' r='3.5' fill='%232d3436'/%3E%3Ccircle cx='57.5' cy='17' r='1.2' fill='%23fff'/%3E%3Cpath d='M64 22 Q85 18 90 28 Q86 32 68 30Z' fill='%23e8a84c' stroke='%23c07830' stroke-width='1'/%3E%3C/svg%3E">
+<meta property="og:title" content="一只鹈鹕的主页">
+<meta property="og:description" content="这里是一只鹈鹕不知名的主页">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yelican.cn">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
+
   body {
     min-height: 100vh;
-    background: linear-gradient(170deg, #e8f5e9 0%, #c8e6c9 30%, #a5d6a7 60%, #81c784 100%);
-    font-family: 'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;
-    padding: 20px; display: flex; flex-direction: column; align-items: center;
-    position: relative; overflow-x: hidden;
+    background: linear-gradient(160deg, #fdf6e3 0%, #f5e6d3 30%, #e8d5c4 60%, #d4e4f7 100%);
+    font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
   }
-  .leaf { position: fixed; pointer-events: none; z-index: 0; font-size: 20px; opacity: 0.35; animation: leafFall linear infinite; }
-  @keyframes leafFall { 0% { transform: translateY(-20vh) rotate(0deg); opacity: 0.35; } 100% { transform: translateY(110vh) rotate(720deg); opacity: 0.1; } }
-  .leaf:nth-child(1) { left: 5%; animation-duration: 14s; } .leaf:nth-child(2) { left: 15%; animation-duration: 18s; animation-delay: 3s; font-size: 14px; }
-  .leaf:nth-child(3) { left: 30%; animation-duration: 16s; animation-delay: 6s; font-size: 22px; }
-  .leaf:nth-child(4) { left: 50%; animation-duration: 20s; animation-delay: 1s; font-size: 16px; }
-  .leaf:nth-child(5) { left: 65%; animation-duration: 15s; animation-delay: 8s; }
-  .leaf:nth-child(6) { left: 78%; animation-duration: 19s; animation-delay: 4s; font-size: 14px; }
-  .leaf:nth-child(7) { left: 90%; animation-duration: 17s; animation-delay: 10s; font-size: 18px; }
-  .leaf:nth-child(8) { left: 42%; animation-duration: 22s; animation-delay: 12s; font-size: 16px; }
-  .hole-bg { position: fixed; bottom: 40px; right: 40px; z-index: 0; pointer-events: none; font-size: 160px; opacity: 0.08; transform: rotate(10deg); }
-  .container { position: relative; z-index: 1; max-width: 640px; width: 100%; }
-  .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-  .top-bar a { text-decoration: none; color: #2e7d32; font-size: 14px; font-weight: 500; padding: 8px 16px; border-radius: 20px; background: rgba(255,255,255,0.45); transition: all 0.2s; }
-  .top-bar a:hover { background: rgba(255,255,255,0.75); color: #1b5e20; }
-  .header { text-align: center; margin-bottom: 24px; animation: fadeUp 0.8s ease-out; }
-  @keyframes fadeUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
-  .header .pelican-icon { width: 72px; height: 72px; display: block; margin: 0 auto 8px; }
-  .header .pelican-icon svg { width: 100%; height: 100%; }
-  .header h1 { font-size: 28px; font-weight: 800; letter-spacing: 2px; background: linear-gradient(135deg, #2e7d32, #66bb6a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-  .header p { color: #388e3c; font-size: 14px; margin-top: 6px; }
-  .form-card { background: rgba(255,255,255,0.55); backdrop-filter: blur(12px); border-radius: 24px; padding: 24px; margin-bottom: 24px; border: 1px solid rgba(255,255,255,0.6); }
-  .form-row { display: flex; gap: 12px; margin-bottom: 12px; }
-  .form-row input { flex: 1; padding: 10px 16px; border-radius: 16px; border: 1px solid rgba(0,0,0,0.06); background: rgba(255,255,255,0.7); font-size: 14px; outline: none; font-family: inherit; }
-  .form-row input:focus { border-color: #66bb6a; background: #fff; }
-  .form-card textarea { width: 100%; padding: 12px 16px; border-radius: 16px; border: 1px solid rgba(0,0,0,0.06); background: rgba(255,255,255,0.7); font-size: 14px; outline: none; resize: vertical; min-height: 80px; font-family: inherit; }
-  .form-card textarea:focus { border-color: #66bb6a; background: #fff; }
-  .form-bottom { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; }
-  .form-bottom .hint { font-size: 12px; color: #81c784; }
-  .form-bottom button { padding: 10px 28px; border-radius: 24px; border: none; background: linear-gradient(135deg, #43a047, #66bb6a); color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; transition: all 0.25s; }
-  .form-bottom button:hover { transform: scale(1.04); box-shadow: 0 4px 12px rgba(67,160,71,0.3); }
-  .form-bottom button:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-  .form-status { margin-top: 8px; font-size: 13px; min-height: 20px; }
-  .form-status.success { color: #2e7d32; } .form-status.error { color: #c62828; }
-  .flying-letter { position: fixed; z-index: 999; pointer-events: none; font-size: 32px; animation: letterFly 1.2s ease-in forwards; }
-  @keyframes letterFly { 0% { transform: translateY(0) scale(1); opacity: 1; } 60% { transform: translateY(60vh) scale(0.6); opacity: 0.7; } 100% { transform: translateY(100vh) scale(0.2); opacity: 0; } }
-  .messages { animation: fadeUp 0.8s ease-out 0.2s both; }
-  .msg-card { background: rgba(255,255,255,0.45); backdrop-filter: blur(8px); border-radius: 20px; padding: 18px 22px; margin-bottom: 12px; border: 1px solid rgba(255,255,255,0.5); animation: msgSlide 0.5s ease-out; }
-  @keyframes msgSlide { 0% { opacity: 0; transform: translateY(20px) scale(0.96); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
-  .msg-card:hover { background: rgba(255,255,255,0.6); }
-  .msg-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-  .msg-name { font-weight: 600; font-size: 14px; color: #2e7d32; }
-  .msg-name .anon { color: #81c784; font-weight: 400; font-style: italic; }
-  .msg-time { font-size: 12px; color: #a5d6a7; }
-  .msg-content { font-size: 15px; color: #1b5e20; line-height: 1.7; word-break: break-word; }
-  .empty-state { text-align: center; padding: 48px 20px; color: #81c784; font-size: 15px; line-height: 2; }
-  .empty-state .big { font-size: 48px; display: block; margin-bottom: 12px; }
-  .loading { text-align: center; padding: 32px; color: #81c784; }
-  .footer-note { text-align: center; padding: 24px 0 40px; font-size: 13px; color: rgba(46,125,50,0.3); }
-  @media (max-width: 480px) { .form-card { padding: 16px; } .form-row { flex-direction: column; } .header h1 { font-size: 22px; } }
+
+  /* ── 波浪背景 ── */
+  .waves {
+    position: fixed; bottom: 0; left: 0; width: 100%; height: 120px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120'%3E%3Cpath fill='%2390b8d0' fill-opacity='0.25' d='M0,64L48,74.7C96,85,192,107,288,106.7C384,107,480,85,576,74.7C672,64,768,64,864,74.7C960,85,1056,107,1152,106.7C1248,107,1344,85,1392,74.7L1440,64L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z'/%3E%3C/svg%3E") repeat-x bottom;
+    background-size: 1440px 120px;
+    animation: waveMove 8s ease-in-out infinite alternate;
+    z-index: 0;
+  }
+  .waves::after {
+    content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 100px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120'%3E%3Cpath fill='%237ca5c0' fill-opacity='0.15' d='M0,96L48,85.3C96,75,192,53,288,48C384,43,480,53,576,69.3C672,85,768,107,864,106.7C960,107,1056,85,1152,74.7C1248,64,1344,64,1392,64L1440,64L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z'/%3E%3C/svg%3E") repeat-x bottom;
+    background-size: 1440px 100px;
+    animation: waveMove 6s ease-in-out infinite alternate-reverse;
+  }
+  @keyframes waveMove {
+    0% { background-position-x: 0; }
+    100% { background-position-x: 120px; }
+  }
+
+  /* ── 浮动云朵 ── */
+  .cloud { position: fixed; background: rgba(255,255,255,0.6); border-radius: 50%; z-index: 0; }
+  .cloud::before, .cloud::after {
+    content: ''; position: absolute; background: rgba(255,255,255,0.6); border-radius: 50%;
+  }
+  .cloud-1 { width: 180px; height: 60px; top: 8%; left: -200px; animation: cloudDrift 25s linear infinite; }
+  .cloud-1::before { width: 80px; height: 80px; top: -40px; left: 30px; }
+  .cloud-1::after  { width: 100px; height: 70px; top: -30px; left: 70px; }
+  .cloud-2 { width: 220px; height: 70px; top: 18%; left: -220px; animation: cloudDrift 30s linear infinite 8s; }
+  .cloud-2::before { width: 90px; height: 90px; top: -50px; left: 40px; }
+  .cloud-2::after  { width: 120px; height: 80px; top: -35px; left: 90px; }
+  @keyframes cloudDrift {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(calc(100vw + 400px)); }
+  }
+
+  /* ── 主卡片 ── */
+  .card {
+    position: relative; z-index: 1;
+    text-align: center; padding: 48px 56px;
+    background: rgba(255,255,255,0.45);
+    backdrop-filter: blur(16px);
+    border-radius: 32px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+    border: 1px solid rgba(255,255,255,0.6);
+    max-width: 520px; width: 90%;
+    animation: fadeUp 1s ease-out;
+  }
+  @keyframes fadeUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  .avatar {
+    width: 100px; height: 100px; margin: 0 auto 16px;
+    position: relative;
+  }
+  .avatar svg { width: 100%; height: 100%; }
+
+  h1 {
+    font-size: 28px; font-weight: 700;
+    color: #2d3436; margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+  .subtitle {
+    font-size: 16px; color: #636e72;
+    margin-bottom: 28px; line-height: 1.7;
+  }
+  .subtitle span { display: inline-block; }
+  .cursor { animation: blink 1s step-end infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .tags {
+    display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+    margin-bottom: 28px;
+  }
+  .tag {
+    padding: 6px 18px; border-radius: 20px;
+    font-size: 13px; background: rgba(255,255,255,0.5);
+    color: #2d3436; border: 1px solid rgba(0,0,0,0.06);
+    transition: all 0.2s;
+  }
+  .tag:hover { background: rgba(255,255,255,0.8); transform: scale(1.05); }
+
+  .divider {
+    width: 40px; height: 3px; margin: 0 auto 24px;
+    background: linear-gradient(90deg, #e17055, #fdcb6e);
+    border-radius: 4px;
+  }
+
+  .links { display: flex; gap: 16px; justify-content: center; }
+  .links a {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 10px 24px; border-radius: 24px;
+    text-decoration: none; font-size: 14px; font-weight: 500;
+    transition: all 0.25s;
+    background: rgba(255,255,255,0.5); color: #2d3436;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  .links a:hover {
+    background: #2d3436; color: #fff;
+    transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  }
+
+  /* ── 鹈鹕动画区 ── */
+  .pelican-area {
+    position: fixed; bottom: 100px; left: 0; width: 100%; height: 150px;
+    z-index: 1; pointer-events: none;
+  }
+
+  .pelican {
+    position: absolute; bottom: 0;
+    animation: pelicanWalk 12s linear infinite;
+    opacity: 0.85;
+  }
+  .pelican:nth-child(1) { left: -100px; animation-duration: 14s; bottom: 10px; }
+  .pelican:nth-child(2) { left: -100px; animation-duration: 18s; animation-delay: 3s; bottom: 30px; transform: scale(0.75); }
+  .pelican:nth-child(3) { left: -100px; animation-duration: 22s; animation-delay: 7s; bottom: 5px; transform: scale(0.55); opacity: 0.6; }
+
+  @keyframes pelicanWalk {
+    0%   { transform: translateX(0) translateY(0); }
+    25%  { transform: translateX(25vw) translateY(-12px); }
+    50%  { transform: translateX(55vw) translateY(0); }
+    75%  { transform: translateX(75vw) translateY(-8px); }
+    100% { transform: translateX(calc(100vw + 120px)) translateY(0); }
+  }
+
+  .pelican-body {
+    animation: bob 0.6s ease-in-out infinite alternate;
+    transform-origin: center bottom;
+  }
+  @keyframes bob {
+    0%   { transform: rotate(-3deg) translateY(0); }
+    100% { transform: rotate(3deg) translateY(-4px); }
+  }
+
+  .pelican .wing {
+    animation: flap 1.2s ease-in-out infinite alternate;
+    transform-origin: 40px 15px;
+  }
+  @keyframes flap {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(-25deg); }
+  }
+
+  .pelican:nth-child(2) .wing { animation-duration: 1.5s; }
+  .pelican:nth-child(3) .wing { animation-duration: 1.8s; }
+
+  /* ── 飞行的鹈鹕 ── */
+  .pelican-fly {
+    position: fixed; z-index: 0; pointer-events: none;
+    animation: flyAcross 20s linear infinite;
+    opacity: 0.3;
+  }
+  .pelican-fly:nth-child(1) { top: 12%; left: -150px; animation-duration: 25s; }
+  .pelican-fly:nth-child(2) { top: 22%; left: -150px; animation-duration: 32s; animation-delay: 10s; transform: scale(0.6); }
+
+  @keyframes flyAcross {
+    0%   { transform: translateX(0) translateY(0) scaleX(1); }
+    50%  { transform: translateX(50vw) translateY(-20px) scaleX(1); }
+    100% { transform: translateX(calc(100vw + 200px)) translateY(0) scaleX(1); }
+  }
+
+  .fly-wing {
+    animation: flyFlap 0.8s ease-in-out infinite alternate;
+    transform-origin: 35px 10px;
+  }
+  @keyframes flyFlap {
+    0%   { transform: rotate(15deg); }
+    100% { transform: rotate(-35deg); }
+  }
+
+  /* ── 小信条 ── */
+  .footer-note {
+    position: fixed; bottom: 24px; z-index: 2;
+    font-size: 13px; color: rgba(0,0,0,0.25);
+    letter-spacing: 0.5px;
+  }
+
+  @media (max-width: 480px) {
+    .card { padding: 32px 24px; }
+    h1 { font-size: 22px; }
+    .links { flex-direction: column; align-items: center; }
+  }
 </style>
 </head>
 <body>
-<div class="leaf">🍃</div><div class="leaf">🍂</div><div class="leaf">🍃</div><div class="leaf">🌿</div>
-<div class="leaf">🍂</div><div class="leaf">🍃</div><div class="leaf">🌱</div><div class="leaf">🍂</div>
-<div class="hole-bg">🪹</div>
-<div class="container">
-  <div class="top-bar"><a href="https://yelican.cn">← 回到主页</a><a href="javascript:location.reload()">刷新</a></div>
-  <div class="header">
-    <span class="pelican-icon"><svg viewBox="0 0 100 90"><ellipse cx="50" cy="60" rx="32" ry="28" fill="#f0e6d3" stroke="#d4c4a8" stroke-width="1.5"/><path d="M28 50 Q15 40 20 30 Q25 28 30 38Z" fill="#e8d8c4" stroke="#d4c4a8" stroke-width="1"/><path d="M72 50 Q85 40 80 30 Q75 28 70 38Z" fill="#e8d8c4" stroke="#d4c4a8" stroke-width="1"/><path d="M22 70 Q12 72 8 68 Q14 65 22 68Z" fill="#d4c4a8"/><ellipse cx="50" cy="38" rx="14" ry="16" fill="#f5ede2" stroke="#d4c4a8" stroke-width="1"/><circle cx="50" cy="22" r="16" fill="#f5ede2" stroke="#d4c4a8" stroke-width="1"/><circle cx="56" cy="18" r="3.5" fill="#2d3436"/><circle cx="57.5" cy="17" r="1.2" fill="#fff"/><path d="M64 22 Q85 18 90 28 Q86 32 68 30Z" fill="#e8a84c" stroke="#c07830" stroke-width="1"/><path d="M64 22 Q80 22 85 25" fill="none" stroke="#c07830" stroke-width="0.5"/><path d="M68 30 Q78 35 82 32 Q75 38 66 34Z" fill="#f0c060" stroke="#c07830" stroke-width="0.5" opacity="0.8"/><line x1="40" y1="84" x2="38" y2="94" stroke="#e0a040" stroke-width="3" stroke-linecap="round"/><line x1="60" y1="84" x2="62" y2="94" stroke="#e0a040" stroke-width="3" stroke-linecap="round"/><path d="M33 94 Q38 96 43 94" fill="none" stroke="#e0a040" stroke-width="2" stroke-linecap="round"/><path d="M57 94 Q62 96 67 94" fill="none" stroke="#e0a040" stroke-width="2" stroke-linecap="round"/></svg></span>
-    <h1>鹈鹕树洞</h1>
-    <p>🌿 把心事丢进树洞，风会替你保管</p>
-  </div>
-  <div class="form-card">
-    <div class="form-row"><input type="text" id="nameInput" placeholder="你的名字（留空匿名）" maxlength="16" autocomplete="off"></div>
-    <textarea id="contentInput" placeholder="写写你的心情、秘密、或随便什么……" maxlength="1000"></textarea>
-    <div class="form-bottom"><span class="hint"><span id="charCount">0</span>/1000</span><button id="submitBtn">✉️ 丢进树洞</button></div>
-    <div class="form-status" id="formStatus"></div>
-  </div>
-  <div class="messages" id="messageList"><div class="loading">🌱 树洞正在加载……</div></div>
-  <div class="footer-note">🍃 树洞深处，藏着无数的秘密</div>
+
+<!-- 云朵 -->
+<div class="cloud cloud-1"></div>
+<div class="cloud cloud-2"></div>
+
+<!-- 波浪 -->
+<div class="waves"></div>
+
+<!-- 飞行的鹈鹕 -->
+<div class="pelican-fly">
+  <svg viewBox="0 0 80 50" width="100" height="62">
+    <g class="fly-wing">
+      <ellipse cx="35" cy="12" rx="28" ry="8" fill="#5a4a3a" opacity="0.7"/>
+    </g>
+    <ellipse cx="40" cy="28" rx="18" ry="10" fill="#7a6a5a"/>
+    <ellipse cx="55" cy="25" rx="12" ry="6" fill="#e8a84c"/>
+    <circle cx="62" cy="24" r="2" fill="#2d3436"/>
+    <path d="M68 24 Q75 22 78 26 Q74 28 68 26Z" fill="#c07830"/>
+    <ellipse cx="40" cy="35" rx="6" ry="4" fill="#6a5a4a"/>
+  </svg>
 </div>
-<script>
-const API_BASE='https://treehole.yelican.cn';
-const nameInput=document.getElementById('nameInput');
-const contentInput=document.getElementById('contentInput');
-const submitBtn=document.getElementById('submitBtn');
-const formStatus=document.getElementById('formStatus');
-const messageList=document.getElementById('messageList');
-const charCount=document.getElementById('charCount');
-contentInput.addEventListener('input',()=>{charCount.textContent=contentInput.value.length;});
-async function loadMessages(){
-  try{const r=await fetch(API_BASE+'/api/list');if(!r.ok)throw Error();const m=await r.json();
-  if(!m.length){messageList.innerHTML='<div class="empty-state"><span class="big">🪹</span>树洞里还空空的<br>来做第一个留言的人吧～</div>';return;}
-  messageList.innerHTML=m.map(x=>{const n=x.name==='匿名'?'<span class="anon">匿名</span>':esc(x.name);return '<div class="msg-card"><div class="msg-head"><span class="msg-name">'+n+'</span><span class="msg-time">'+fmt(x.time)+'</span></div><div class="msg-content">'+esc(x.content).replace(/\n/g,'<br>')+'</div></div>';}).join('');}
-  catch(e){messageList.innerHTML='<div class="empty-state">❌ 树洞暂时打不开……</div>';}
-}
-submitBtn.addEventListener('click',async()=>{
-  const n=nameInput.value.trim(),c=contentInput.value.trim();if(!c){setStatus('说点什么再丢嘛～','error');return;}
-  submitBtn.disabled=true;submitBtn.textContent='⏳ 飞进去……';setStatus('','');spawnLetter();
-  try{const r=await fetch(API_BASE+'/api/save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,content:c})});const d=await r.json();
-  if(!r.ok){setStatus(d.error||'发送失败了','error');submitBtn.disabled=false;submitBtn.textContent='✉️ 丢进树洞';return;}
-  setStatus('✅ 信已飞入树洞深处 🍃','success');contentInput.value='';charCount.textContent='0';setTimeout(loadMessages,600);}
-  catch(e){setStatus('网络开小差了，再试试？','error');}
-  submitBtn.disabled=false;submitBtn.textContent='✉️ 丢进树洞';
-});
-function spawnLetter(){const e=document.createElement('div');e.className='flying-letter';e.textContent='✉️';e.style.left=(window.innerWidth/2-16)+'px';e.style.top=submitBtn.getBoundingClientRect().top+'px';document.body.appendChild(e);setTimeout(()=>e.remove(),1300);}
-function setStatus(m,t){formStatus.textContent=m;formStatus.className='form-status '+t;}
-function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML;}
-function fmt(iso){const d=new Date(iso),n=new Date(),df=n-d;if(df<60000)return '刚刚';if(df<3600000)return Math.floor(df/60000)+'分钟前';if(df<86400000)return Math.floor(df/3600000)+'小时前';return d.toLocaleDateString('zh-CN',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});}
-loadMessages();
-</script>
+<div class="pelican-fly">
+  <svg viewBox="0 0 80 50" width="80" height="50">
+    <g class="fly-wing">
+      <ellipse cx="35" cy="12" rx="28" ry="8" fill="#5a4a3a" opacity="0.7"/>
+    </g>
+    <ellipse cx="40" cy="28" rx="18" ry="10" fill="#7a6a5a"/>
+    <ellipse cx="55" cy="25" rx="12" ry="6" fill="#e8a84c"/>
+    <circle cx="62" cy="24" r="2" fill="#2d3436"/>
+    <path d="M68 24 Q75 22 78 26 Q74 28 68 26Z" fill="#c07830"/>
+  </svg>
+</div>
+
+<!-- 主卡片 -->
+<div class="card">
+  <div class="avatar">
+    <svg viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg">
+      <g class="pelican-body">
+        <!-- 身体 -->
+        <ellipse cx="50" cy="60" rx="32" ry="28" fill="#f0e6d3"/>
+        <ellipse cx="50" cy="60" rx="32" ry="28" fill="none" stroke="#d4c4a8" stroke-width="1.5"/>
+        <!-- 翅膀 -->
+        <path d="M28 50 Q15 40 20 30 Q25 28 30 38Z" fill="#e8d8c4" stroke="#d4c4a8" stroke-width="1"/>
+        <path d="M72 50 Q85 40 80 30 Q75 28 70 38Z" fill="#e8d8c4" stroke="#d4c4a8" stroke-width="1"/>
+        <!-- 尾巴 -->
+        <path d="M22 70 Q12 72 8 68 Q14 65 22 68Z" fill="#d4c4a8"/>
+        <!-- 脖子 -->
+        <ellipse cx="50" cy="38" rx="14" ry="16" fill="#f5ede2"/>
+        <ellipse cx="50" cy="38" rx="14" ry="16" fill="none" stroke="#d4c4a8" stroke-width="1"/>
+        <!-- 头 -->
+        <circle cx="50" cy="22" r="16" fill="#f5ede2" stroke="#d4c4a8" stroke-width="1"/>
+        <!-- 眼睛 -->
+        <circle cx="56" cy="18" r="3.5" fill="#2d3436"/>
+        <circle cx="57.5" cy="17" r="1.2" fill="#fff"/>
+        <!-- 喙 - 大鹈鹕标志 -->
+        <path d="M64 22 Q85 18 90 28 Q86 32 68 30Z" fill="#e8a84c" stroke="#c07830" stroke-width="1"/>
+        <path d="M64 22 Q80 22 85 25" fill="none" stroke="#c07830" stroke-width="0.5"/>
+        <!-- 下喙袋 -->
+        <path d="M68 30 Q78 35 82 32 Q75 38 66 34Z" fill="#f0c060" stroke="#c07830" stroke-width="0.5" opacity="0.8"/>
+        <!-- 腿 -->
+        <line x1="40" y1="84" x2="38" y2="94" stroke="#e0a040" stroke-width="3" stroke-linecap="round"/>
+        <line x1="60" y1="84" x2="62" y2="94" stroke="#e0a040" stroke-width="3" stroke-linecap="round"/>
+        <!-- 脚 -->
+        <path d="M33 94 Q38 96 43 94" fill="none" stroke="#e0a040" stroke-width="2" stroke-linecap="round"/>
+        <path d="M57 94 Q62 96 67 94" fill="none" stroke="#e0a040" stroke-width="2" stroke-linecap="round"/>
+      </g>
+    </svg>
+  </div>
+
+  <h1>一只鹈鹕🐦</h1>
+  <div class="divider"></div>
+  <p class="subtitle">
+    <span>这里是一只鹈鹕不知名的主页</span><br>
+    <span>还没想好干什么</span>
+    <span class="cursor">▍</span>
+  </p>
+
+  <div class="tags">
+    <span class="tag">🐟 爱吞鱼</span>
+    <span class="tag">🌊 喜欢水</span>
+    <span class="tag">☀️ 晒太阳</span>
+    <span class="tag">🤔 思考鸟生</span>
+  </div>
+
+  <div class="links">
+    <a href="https://github.com/Yelican" target="_blank">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+      GitHub
+    </a>
+  </div>
+</div>
+
+<!-- 地面行走的鹈鹕 -->
+<div class="pelican-area">
+  <div class="pelican">
+    <svg viewBox="0 0 70 50" width="70" height="50">
+      <g>
+        <ellipse cx="35" cy="35" rx="22" ry="18" fill="#f0e6d3"/>
+        <path class="wing" d="M22 30 Q10 18 15 12 Q18 12 22 24Z" fill="#e8d8c4"/>
+        <ellipse cx="35" cy="20" rx="11" ry="12" fill="#f5ede2"/>
+        <circle cx="35" cy="12" r="11" fill="#f5ede2"/>
+        <circle cx="40" cy="10" r="2.5" fill="#2d3436"/>
+        <path d="M45 12 Q58 10 62 16 Q56 18 46 16Z" fill="#e8a84c"/>
+        <path d="M46 16 Q52 20 56 18 Q50 22 44 20Z" fill="#f0c060" opacity="0.8"/>
+        <line x1="28" y1="50" x2="26" y2="56" stroke="#e0a040" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="42" y1="50" x2="44" y2="56" stroke="#e0a040" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M22 56 Q26 58 30 56" fill="none" stroke="#e0a040" stroke-width="2" stroke-linecap="round"/>
+        <path d="M40 56 Q44 58 48 56" fill="none" stroke="#e0a040" stroke-width="2" stroke-linecap="round"/>
+      </g>
+    </svg>
+  </div>
+  <div class="pelican">
+    <svg viewBox="0 0 70 50" width="60" height="42">
+      <g>
+        <ellipse cx="35" cy="35" rx="20" ry="16" fill="#f0e6d3"/>
+        <path class="wing" d="M24 28 Q14 18 18 12 Q20 12 24 22Z" fill="#e8d8c4"/>
+        <ellipse cx="35" cy="20" rx="10" ry="10" fill="#f5ede2"/>
+        <circle cx="35" cy="12" r="10" fill="#f5ede2"/>
+        <circle cx="39" cy="10" r="2" fill="#2d3436"/>
+        <path d="M44 12 Q55 10 58 16 Q54 18 44 16Z" fill="#e8a84c"/>
+        <line x1="29" y1="48" x2="27" y2="54" stroke="#e0a040" stroke-width="2" stroke-linecap="round"/>
+        <line x1="41" y1="48" x2="43" y2="54" stroke="#e0a040" stroke-width="2" stroke-linecap="round"/>
+      </g>
+    </svg>
+  </div>
+  <div class="pelican">
+    <svg viewBox="0 0 70 50" width="45" height="32">
+      <g>
+        <ellipse cx="35" cy="35" rx="18" ry="14" fill="#f0e6d3"/>
+        <path class="wing" d="M24 28 Q14 18 18 12 Q20 12 24 22Z" fill="#e8d8c4"/>
+        <ellipse cx="35" cy="20" rx="9" ry="9" fill="#f5ede2"/>
+        <circle cx="35" cy="12" r="9" fill="#f5ede2"/>
+        <circle cx="39" cy="10" r="1.8" fill="#2d3436"/>
+        <path d="M43 12 Q53 10 56 16 Q52 18 43 16Z" fill="#e8a84c"/>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<div class="footer-note">🐦 一只鹈鹕的互联网小窝</div>
+
 </body>
 </html>

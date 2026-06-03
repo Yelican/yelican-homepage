@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🐦 鹈鹕树洞</title>
+<title>鹈鹕树洞</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 90'%3E%3Cellipse cx='50' cy='60' rx='32' ry='28' fill='%23f0e6d3' stroke='%23d4c4a8' stroke-width='1.5'/%3E%3Ccircle cx='50' cy='22' r='16' fill='%23f5ede2' stroke='%23d4c4a8' stroke-width='1'/%3E%3Ccircle cx='56' cy='18' r='3.5' fill='%232d3436'/%3E%3Ccircle cx='57.5' cy='17' r='1.2' fill='%23fff'/%3E%3Cpath d='M64 22 Q85 18 90 28 Q86 32 68 30Z' fill='%23e8a84c' stroke='%23c07830' stroke-width='1'/%3E%3C/svg%3E">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -42,7 +42,7 @@
   .top-bar a:hover { background: rgba(255,255,255,0.7); color: #2d3436; }
   .header { text-align: center; margin-bottom: 24px; animation: fadeUp 0.8s ease-out; }
   @keyframes fadeUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
-  .header .pelican-icon { font-size: 52px; display: block; margin-bottom: 8px; }
+  .header .pelican-icon { width: 72px; height: 72px; display: block; margin: 0 auto 8px; }
   .header h1 { font-size: 28px; color: #2d3436; font-weight: 700; letter-spacing: 1px; }
   .header p { color: #636e72; font-size: 14px; margin-top: 6px; }
   .form-card {
@@ -109,7 +109,25 @@
     <a href="javascript:location.reload()">🔄 刷新</a>
   </div>
   <div class="header">
-    <span class="pelican-icon">🐦</span>
+    <span class="pelican-icon">
+      <svg viewBox="0 0 100 90" width="72" height="72">
+        <ellipse cx="50" cy="60" rx="32" ry="28" fill="#f0e6d3" stroke="#d4c4a8" stroke-width="1.5"/>
+        <path d="M28 50 Q15 40 20 30 Q25 28 30 38Z" fill="#e8d8c4" stroke="#d4c4a8" stroke-width="1"/>
+        <path d="M72 50 Q85 40 80 30 Q75 28 70 38Z" fill="#e8d8c4" stroke="#d4c4a8" stroke-width="1"/>
+        <path d="M22 70 Q12 72 8 68 Q14 65 22 68Z" fill="#d4c4a8"/>
+        <ellipse cx="50" cy="38" rx="14" ry="16" fill="#f5ede2" stroke="#d4c4a8" stroke-width="1"/>
+        <circle cx="50" cy="22" r="16" fill="#f5ede2" stroke="#d4c4a8" stroke-width="1"/>
+        <circle cx="56" cy="18" r="3.5" fill="#2d3436"/>
+        <circle cx="57.5" cy="17" r="1.2" fill="#fff"/>
+        <path d="M64 22 Q85 18 90 28 Q86 32 68 30Z" fill="#e8a84c" stroke="#c07830" stroke-width="1"/>
+        <path d="M64 22 Q80 22 85 25" fill="none" stroke="#c07830" stroke-width="0.5"/>
+        <path d="M68 30 Q78 35 82 32 Q75 38 66 34Z" fill="#f0c060" stroke="#c07830" stroke-width="0.5" opacity="0.8"/>
+        <line x1="40" y1="84" x2="38" y2="94" stroke="#e0a040" stroke-width="3" stroke-linecap="round"/>
+        <line x1="60" y1="84" x2="62" y2="94" stroke="#e0a040" stroke-width="3" stroke-linecap="round"/>
+        <path d="M33 94 Q38 96 43 94" fill="none" stroke="#e0a040" stroke-width="2" stroke-linecap="round"/>
+        <path d="M57 94 Q62 96 67 94" fill="none" stroke="#e0a040" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </span>
     <h1>鹈鹕树洞</h1>
     <p>说点什么吧，没人知道是你 🫣</p>
   </div>

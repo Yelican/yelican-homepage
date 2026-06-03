@@ -1,192 +1,118 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>楣堥箷鏍戞礊</title>
+<title>鹈鹕树洞</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 90'%3E%3Cellipse cx='50' cy='60' rx='32' ry='28' fill='%23f0e6d3' stroke='%23d4c4a8' stroke-width='1.5'/%3E%3Ccircle cx='50' cy='22' r='16' fill='%23f5ede2' stroke='%23d4c4a8' stroke-width='1'/%3E%3Ccircle cx='56' cy='18' r='3.5' fill='%232d3436'/%3E%3Ccircle cx='57.5' cy='17' r='1.2' fill='%23fff'/%3E%3Cpath d='M64 22 Q85 18 90 28 Q86 32 68 30Z' fill='%23e8a84c' stroke='%23c07830' stroke-width='1'/%3E%3C/svg%3E">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     min-height: 100vh;
-    background: linear-gradient(160deg, #fdf6e3 0%, #f5e6d3 30%, #e8d5c4 60%, #d4e4f7 100%);
-    font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background: linear-gradient(170deg, #e8f5e9 0%, #c8e6c9 30%, #a5d6a7 60%, #81c784 100%);
+    font-family: 'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;
+    padding: 20px; display: flex; flex-direction: column; align-items: center;
+    position: relative; overflow-x: hidden;
   }
-  .waves {
-    position: fixed; bottom: 0; left: 0; width: 100%; height: 80px;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80'%3E%3Cpath fill='%2390b8d0' fill-opacity='0.2' d='M0,48L48,56C96,64,192,80,288,80C384,80,480,64,576,53.3C672,43,768,37,864,42.7C960,48,1056,64,1152,69.3C1248,75,1344,69,1392,66.7L1440,64L1440,80L1392,80C1344,80,1248,80,1152,80C1056,80,960,80,864,80C768,80,672,80,576,80C480,80,384,80,288,80C192,80,96,80,48,80L0,80Z'/%3E%3C/svg%3E") repeat-x bottom;
-    background-size: 1440px 80px;
-    animation: waveMove 6s ease-in-out infinite alternate;
-    z-index: 0; pointer-events: none;
-  }
-  @keyframes waveMove { 0% { background-position-x: 0; } 100% { background-position-x: 80px; } }
-  .cloud {
-    position: fixed; background: rgba(255,255,255,0.5); border-radius: 50%; z-index: 0; pointer-events: none;
-    width: 160px; height: 50px; top: 5%; left: -180px; animation: cloudDrift 30s linear infinite;
-  }
-  .cloud::before, .cloud::after { content: ''; position: absolute; background: rgba(255,255,255,0.5); border-radius: 50%; }
-  .cloud::before { width: 70px; height: 70px; top: -35px; left: 25px; }
-  .cloud::after { width: 90px; height: 60px; top: -25px; left: 60px; }
-  @keyframes cloudDrift { 0% { transform: translateX(0); } 100% { transform: translateX(calc(100vw + 360px)); } }
+  .leaf { position: fixed; pointer-events: none; z-index: 0; font-size: 20px; opacity: 0.35; animation: leafFall linear infinite; }
+  @keyframes leafFall { 0% { transform: translateY(-20vh) rotate(0deg); opacity: 0.35; } 100% { transform: translateY(110vh) rotate(720deg); opacity: 0.1; } }
+  .leaf:nth-child(1) { left: 5%; animation-duration: 14s; } .leaf:nth-child(2) { left: 15%; animation-duration: 18s; animation-delay: 3s; font-size: 14px; }
+  .leaf:nth-child(3) { left: 30%; animation-duration: 16s; animation-delay: 6s; font-size: 22px; }
+  .leaf:nth-child(4) { left: 50%; animation-duration: 20s; animation-delay: 1s; font-size: 16px; }
+  .leaf:nth-child(5) { left: 65%; animation-duration: 15s; animation-delay: 8s; }
+  .leaf:nth-child(6) { left: 78%; animation-duration: 19s; animation-delay: 4s; font-size: 14px; }
+  .leaf:nth-child(7) { left: 90%; animation-duration: 17s; animation-delay: 10s; font-size: 18px; }
+  .leaf:nth-child(8) { left: 42%; animation-duration: 22s; animation-delay: 12s; font-size: 16px; }
+  .hole-bg { position: fixed; bottom: 40px; right: 40px; z-index: 0; pointer-events: none; font-size: 160px; opacity: 0.08; transform: rotate(10deg); }
   .container { position: relative; z-index: 1; max-width: 640px; width: 100%; }
   .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-  .top-bar a {
-    text-decoration: none; color: #636e72; font-size: 14px;
-    padding: 8px 16px; border-radius: 20px;
-    background: rgba(255,255,255,0.4); transition: all 0.2s;
-  }
-  .top-bar a:hover { background: rgba(255,255,255,0.7); color: #2d3436; }
+  .top-bar a { text-decoration: none; color: #2e7d32; font-size: 14px; font-weight: 500; padding: 8px 16px; border-radius: 20px; background: rgba(255,255,255,0.45); transition: all 0.2s; }
+  .top-bar a:hover { background: rgba(255,255,255,0.75); color: #1b5e20; }
   .header { text-align: center; margin-bottom: 24px; animation: fadeUp 0.8s ease-out; }
   @keyframes fadeUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
   .header .pelican-icon { width: 72px; height: 72px; display: block; margin: 0 auto 8px; }
-  .header h1 { font-size: 28px; color: #2d3436; font-weight: 700; letter-spacing: 1px; }
-  .header p { color: #636e72; font-size: 14px; margin-top: 6px; }
-  .form-card {
-    background: rgba(255,255,255,0.5); backdrop-filter: blur(12px);
-    border-radius: 24px; padding: 24px;
-    border: 1px solid rgba(255,255,255,0.6);
-    margin-bottom: 24px;
-    animation: fadeUp 0.8s ease-out 0.1s both;
-  }
+  .header .pelican-icon svg { width: 100%; height: 100%; }
+  .header h1 { font-size: 28px; font-weight: 800; letter-spacing: 2px; background: linear-gradient(135deg, #2e7d32, #66bb6a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .header p { color: #388e3c; font-size: 14px; margin-top: 6px; }
+  .form-card { background: rgba(255,255,255,0.55); backdrop-filter: blur(12px); border-radius: 24px; padding: 24px; margin-bottom: 24px; border: 1px solid rgba(255,255,255,0.6); }
   .form-row { display: flex; gap: 12px; margin-bottom: 12px; }
-  .form-row input {
-    flex: 1; padding: 10px 16px; border-radius: 16px;
-    border: 1px solid rgba(0,0,0,0.06); background: rgba(255,255,255,0.6);
-    font-size: 14px; outline: none; transition: all 0.2s; font-family: inherit;
-  }
-  .form-row input:focus { border-color: #e17055; background: #fff; }
-  .form-card textarea {
-    width: 100%; padding: 12px 16px; border-radius: 16px;
-    border: 1px solid rgba(0,0,0,0.06); background: rgba(255,255,255,0.6);
-    font-size: 14px; outline: none; resize: vertical; min-height: 80px;
-    transition: all 0.2s; font-family: inherit;
-  }
-  .form-card textarea:focus { border-color: #e17055; background: #fff; }
+  .form-row input { flex: 1; padding: 10px 16px; border-radius: 16px; border: 1px solid rgba(0,0,0,0.06); background: rgba(255,255,255,0.7); font-size: 14px; outline: none; font-family: inherit; }
+  .form-row input:focus { border-color: #66bb6a; background: #fff; }
+  .form-card textarea { width: 100%; padding: 12px 16px; border-radius: 16px; border: 1px solid rgba(0,0,0,0.06); background: rgba(255,255,255,0.7); font-size: 14px; outline: none; resize: vertical; min-height: 80px; font-family: inherit; }
+  .form-card textarea:focus { border-color: #66bb6a; background: #fff; }
   .form-bottom { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; }
-  .form-bottom .hint { font-size: 12px; color: #b2bec3; }
-  .form-bottom button {
-    padding: 10px 28px; border-radius: 24px; border: none;
-    background: linear-gradient(135deg, #e17055, #fdcb6e);
-    color: #fff; font-size: 14px; font-weight: 600; cursor: pointer;
-    transition: all 0.25s; font-family: inherit;
-  }
-  .form-bottom button:hover { transform: scale(1.04); box-shadow: 0 4px 12px rgba(225,112,85,0.3); }
+  .form-bottom .hint { font-size: 12px; color: #81c784; }
+  .form-bottom button { padding: 10px 28px; border-radius: 24px; border: none; background: linear-gradient(135deg, #43a047, #66bb6a); color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; transition: all 0.25s; }
+  .form-bottom button:hover { transform: scale(1.04); box-shadow: 0 4px 12px rgba(67,160,71,0.3); }
   .form-bottom button:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-  .form-status { margin-top: 8px; font-size: 13px; min-height: 20px; transition: all 0.3s; }
-  .form-status.success { color: #00b894; }
-  .form-status.error { color: #d63031; }
+  .form-status { margin-top: 8px; font-size: 13px; min-height: 20px; }
+  .form-status.success { color: #2e7d32; } .form-status.error { color: #c62828; }
+  .flying-letter { position: fixed; z-index: 999; pointer-events: none; font-size: 32px; animation: letterFly 1.2s ease-in forwards; }
+  @keyframes letterFly { 0% { transform: translateY(0) scale(1); opacity: 1; } 60% { transform: translateY(60vh) scale(0.6); opacity: 0.7; } 100% { transform: translateY(100vh) scale(0.2); opacity: 0; } }
   .messages { animation: fadeUp 0.8s ease-out 0.2s both; }
-  .msg-card {
-    background: rgba(255,255,255,0.4); backdrop-filter: blur(8px);
-    border-radius: 20px; padding: 18px 22px; margin-bottom: 12px;
-    border: 1px solid rgba(255,255,255,0.5); transition: all 0.2s;
-    animation: msgIn 0.4s ease-out;
-  }
-  @keyframes msgIn { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } }
-  .msg-card:hover { background: rgba(255,255,255,0.55); }
+  .msg-card { background: rgba(255,255,255,0.45); backdrop-filter: blur(8px); border-radius: 20px; padding: 18px 22px; margin-bottom: 12px; border: 1px solid rgba(255,255,255,0.5); animation: msgSlide 0.5s ease-out; }
+  @keyframes msgSlide { 0% { opacity: 0; transform: translateY(20px) scale(0.96); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+  .msg-card:hover { background: rgba(255,255,255,0.6); }
   .msg-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-  .msg-name { font-weight: 600; font-size: 14px; color: #2d3436; }
-  .msg-name .anon { color: #b2bec3; font-weight: 400; font-style: italic; }
-  .msg-time { font-size: 12px; color: #b2bec3; }
-  .msg-content { font-size: 15px; color: #2d3436; line-height: 1.7; word-break: break-word; }
-  .empty-state { text-align: center; padding: 48px 20px; color: #b2bec3; font-size: 15px; line-height: 2; }
+  .msg-name { font-weight: 600; font-size: 14px; color: #2e7d32; }
+  .msg-name .anon { color: #81c784; font-weight: 400; font-style: italic; }
+  .msg-time { font-size: 12px; color: #a5d6a7; }
+  .msg-content { font-size: 15px; color: #1b5e20; line-height: 1.7; word-break: break-word; }
+  .empty-state { text-align: center; padding: 48px 20px; color: #81c784; font-size: 15px; line-height: 2; }
   .empty-state .big { font-size: 48px; display: block; margin-bottom: 12px; }
-  .loading { text-align: center; padding: 32px; color: #b2bec3; }
-  .footer-note { text-align: center; padding: 24px 0 40px; font-size: 13px; color: rgba(0,0,0,0.2); position: relative; z-index: 1; }
+  .loading { text-align: center; padding: 32px; color: #81c784; }
+  .footer-note { text-align: center; padding: 24px 0 40px; font-size: 13px; color: rgba(46,125,50,0.3); }
   @media (max-width: 480px) { .form-card { padding: 16px; } .form-row { flex-direction: column; } .header h1 { font-size: 22px; } }
 </style>
 </head>
 <body>
-<div class="cloud"></div>
-<div class="waves"></div>
+<div class="leaf">🍃</div><div class="leaf">🍂</div><div class="leaf">🍃</div><div class="leaf">🌿</div>
+<div class="leaf">🍂</div><div class="leaf">🍃</div><div class="leaf">🌱</div><div class="leaf">🍂</div>
+<div class="hole-bg">🪹</div>
 <div class="container">
-  <div class="top-bar">
-    <a href="https://yelican.cn">鈫?鍥炲埌涓婚〉</a>
-    <a href="javascript:location.reload()">馃攧 鍒锋柊</a>
-  </div>
+  <div class="top-bar"><a href="https://yelican.cn">← 回到主页</a><a href="javascript:location.reload()">刷新</a></div>
   <div class="header">
-    <span class="pelican-icon">
-      <svg viewBox="0 0 100 90" width="72" height="72">
-        <ellipse cx="50" cy="60" rx="32" ry="28" fill="#f0e6d3" stroke="#d4c4a8" stroke-width="1.5"/>
-        <path d="M28 50 Q15 40 20 30 Q25 28 30 38Z" fill="#e8d8c4" stroke="#d4c4a8" stroke-width="1"/>
-        <path d="M72 50 Q85 40 80 30 Q75 28 70 38Z" fill="#e8d8c4" stroke="#d4c4a8" stroke-width="1"/>
-        <path d="M22 70 Q12 72 8 68 Q14 65 22 68Z" fill="#d4c4a8"/>
-        <ellipse cx="50" cy="38" rx="14" ry="16" fill="#f5ede2" stroke="#d4c4a8" stroke-width="1"/>
-        <circle cx="50" cy="22" r="16" fill="#f5ede2" stroke="#d4c4a8" stroke-width="1"/>
-        <circle cx="56" cy="18" r="3.5" fill="#2d3436"/>
-        <circle cx="57.5" cy="17" r="1.2" fill="#fff"/>
-        <path d="M64 22 Q85 18 90 28 Q86 32 68 30Z" fill="#e8a84c" stroke="#c07830" stroke-width="1"/>
-        <path d="M64 22 Q80 22 85 25" fill="none" stroke="#c07830" stroke-width="0.5"/>
-        <path d="M68 30 Q78 35 82 32 Q75 38 66 34Z" fill="#f0c060" stroke="#c07830" stroke-width="0.5" opacity="0.8"/>
-        <line x1="40" y1="84" x2="38" y2="94" stroke="#e0a040" stroke-width="3" stroke-linecap="round"/>
-        <line x1="60" y1="84" x2="62" y2="94" stroke="#e0a040" stroke-width="3" stroke-linecap="round"/>
-        <path d="M33 94 Q38 96 43 94" fill="none" stroke="#e0a040" stroke-width="2" stroke-linecap="round"/>
-        <path d="M57 94 Q62 96 67 94" fill="none" stroke="#e0a040" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-    </span>
-    <h1>楣堥箷鏍戞礊</h1>
-    <p>璇寸偣浠€涔堝惂锛屾病浜虹煡閬撴槸浣?馃</p>
+    <span class="pelican-icon"><svg viewBox="0 0 100 90"><ellipse cx="50" cy="60" rx="32" ry="28" fill="#f0e6d3" stroke="#d4c4a8" stroke-width="1.5"/><path d="M28 50 Q15 40 20 30 Q25 28 30 38Z" fill="#e8d8c4" stroke="#d4c4a8" stroke-width="1"/><path d="M72 50 Q85 40 80 30 Q75 28 70 38Z" fill="#e8d8c4" stroke="#d4c4a8" stroke-width="1"/><path d="M22 70 Q12 72 8 68 Q14 65 22 68Z" fill="#d4c4a8"/><ellipse cx="50" cy="38" rx="14" ry="16" fill="#f5ede2" stroke="#d4c4a8" stroke-width="1"/><circle cx="50" cy="22" r="16" fill="#f5ede2" stroke="#d4c4a8" stroke-width="1"/><circle cx="56" cy="18" r="3.5" fill="#2d3436"/><circle cx="57.5" cy="17" r="1.2" fill="#fff"/><path d="M64 22 Q85 18 90 28 Q86 32 68 30Z" fill="#e8a84c" stroke="#c07830" stroke-width="1"/><path d="M64 22 Q80 22 85 25" fill="none" stroke="#c07830" stroke-width="0.5"/><path d="M68 30 Q78 35 82 32 Q75 38 66 34Z" fill="#f0c060" stroke="#c07830" stroke-width="0.5" opacity="0.8"/><line x1="40" y1="84" x2="38" y2="94" stroke="#e0a040" stroke-width="3" stroke-linecap="round"/><line x1="60" y1="84" x2="62" y2="94" stroke="#e0a040" stroke-width="3" stroke-linecap="round"/><path d="M33 94 Q38 96 43 94" fill="none" stroke="#e0a040" stroke-width="2" stroke-linecap="round"/><path d="M57 94 Q62 96 67 94" fill="none" stroke="#e0a040" stroke-width="2" stroke-linecap="round"/></svg></span>
+    <h1>鹈鹕树洞</h1>
+    <p>🌿 把心事丢进树洞，风会替你保管</p>
   </div>
   <div class="form-card">
-    <div class="form-row">
-      <input type="text" id="nameInput" placeholder="浣犵殑鍚嶅瓧锛堢暀绌哄尶鍚嶏級" maxlength="16" autocomplete="off">
-    </div>
-    <textarea id="contentInput" placeholder="鍐欏啓浣犵殑蹇冩儏銆佺瀵嗐€佹垨闅忎究浠€涔堚€︹€? maxlength="1000"></textarea>
-    <div class="form-bottom">
-      <span class="hint"><span id="charCount">0</span>/1000</span>
-      <button id="submitBtn">馃拰 涓㈣繘鏍戞礊</button>
-    </div>
+    <div class="form-row"><input type="text" id="nameInput" placeholder="你的名字（留空匿名）" maxlength="16" autocomplete="off"></div>
+    <textarea id="contentInput" placeholder="写写你的心情、秘密、或随便什么……" maxlength="1000"></textarea>
+    <div class="form-bottom"><span class="hint"><span id="charCount">0</span>/1000</span><button id="submitBtn">✉️ 丢进树洞</button></div>
     <div class="form-status" id="formStatus"></div>
   </div>
-  <div class="messages" id="messageList">
-    <div class="loading">馃悾 鏍戞礊姝ｅ湪鍔犺浇鈥︹€?/div>
-  </div>
-  <div class="footer-note">馃 鏍戞礊閲岀殑鎮勬倓璇?路 楣堥箷瀹堢潃瀹冧滑</div>
+  <div class="messages" id="messageList"><div class="loading">🌱 树洞正在加载……</div></div>
+  <div class="footer-note">🍃 树洞深处，藏着无数的秘密</div>
 </div>
 <script>
-const API_BASE = 'https://treehole.yelican.cn';
-const nameInput = document.getElementById('nameInput');
-const contentInput = document.getElementById('contentInput');
-const submitBtn = document.getElementById('submitBtn');
-const formStatus = document.getElementById('formStatus');
-const messageList = document.getElementById('messageList');
-const charCount = document.getElementById('charCount');
-contentInput.addEventListener('input', () => { charCount.textContent = contentInput.value.length; });
-async function loadMessages() {
-  try {
-    const res = await fetch(API_BASE + '/api/list');
-    if (!res.ok) throw new Error('鍔犺浇澶辫触');
-    const msgs = await res.json();
-    if (msgs.length === 0) { messageList.innerHTML = '<div class="empty-state"><span class="big">馃</span>鏍戞礊閲岃繕绌虹┖鐨?br>鏉ュ仛绗竴涓暀瑷€鐨勪汉鍚э綖</div>'; return; }
-    messageList.innerHTML = msgs.map(m => {
-      const name = m.name === '鍖垮悕' ? '<span class="anon">鍖垮悕</span>' : esc(m.name);
-      const time = fmt(m.time);
-      return '<div class="msg-card"><div class="msg-head"><span class="msg-name">' + name + '</span><span class="msg-time">' + time + '</span></div><div class="msg-content">' + esc(m.content).replace(/\n/g, '<br>') + '</div></div>';
-    }).join('');
-  } catch(e) { messageList.innerHTML = '<div class="empty-state">鉂?鏍戞礊鏆傛椂鎵撲笉寮€鈥︹€?/div>'; }
+const API_BASE='https://treehole.yelican.cn';
+const nameInput=document.getElementById('nameInput');
+const contentInput=document.getElementById('contentInput');
+const submitBtn=document.getElementById('submitBtn');
+const formStatus=document.getElementById('formStatus');
+const messageList=document.getElementById('messageList');
+const charCount=document.getElementById('charCount');
+contentInput.addEventListener('input',()=>{charCount.textContent=contentInput.value.length;});
+async function loadMessages(){
+  try{const r=await fetch(API_BASE+'/api/list');if(!r.ok)throw Error();const m=await r.json();
+  if(!m.length){messageList.innerHTML='<div class="empty-state"><span class="big">🪹</span>树洞里还空空的<br>来做第一个留言的人吧～</div>';return;}
+  messageList.innerHTML=m.map(x=>{const n=x.name==='匿名'?'<span class="anon">匿名</span>':esc(x.name);return '<div class="msg-card"><div class="msg-head"><span class="msg-name">'+n+'</span><span class="msg-time">'+fmt(x.time)+'</span></div><div class="msg-content">'+esc(x.content).replace(/\n/g,'<br>')+'</div></div>';}).join('');}
+  catch(e){messageList.innerHTML='<div class="empty-state">❌ 树洞暂时打不开……</div>';}
 }
-submitBtn.addEventListener('click', async () => {
-  const name = nameInput.value.trim();
-  const content = contentInput.value.trim();
-  if (!content) { setStatus('璇寸偣浠€涔堝啀涓㈠槢锝?, 'error'); return; }
-  submitBtn.disabled = true; submitBtn.textContent = '鈴?椋炶繘鍘烩€︹€?; setStatus('', '');
-  try {
-    const res = await fetch(API_BASE + '/api/save', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, content }) });
-    const data = await res.json();
-    if (!res.ok) { setStatus(data.error || '鍙戦€佸け璐ヤ簡', 'error'); submitBtn.disabled = false; submitBtn.textContent = '馃拰 涓㈣繘鏍戞礊'; return; }
-    setStatus('鉁?浣犵殑鎮勬倓璇濆凡缁忛杩涙爲娲炲暒锛?, 'success');
-    contentInput.value = ''; charCount.textContent = '0';
-    setTimeout(loadMessages, 500);
-  } catch(e) { setStatus('缃戠粶寮€灏忓樊浜嗭紝鍐嶈瘯璇曪紵', 'error'); }
-  submitBtn.disabled = false; submitBtn.textContent = '馃拰 涓㈣繘鏍戞礊';
+submitBtn.addEventListener('click',async()=>{
+  const n=nameInput.value.trim(),c=contentInput.value.trim();if(!c){setStatus('说点什么再丢嘛～','error');return;}
+  submitBtn.disabled=true;submitBtn.textContent='⏳ 飞进去……';setStatus('','');spawnLetter();
+  try{const r=await fetch(API_BASE+'/api/save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,content:c})});const d=await r.json();
+  if(!r.ok){setStatus(d.error||'发送失败了','error');submitBtn.disabled=false;submitBtn.textContent='✉️ 丢进树洞';return;}
+  setStatus('✅ 信已飞入树洞深处 🍃','success');contentInput.value='';charCount.textContent='0';setTimeout(loadMessages,600);}
+  catch(e){setStatus('网络开小差了，再试试？','error');}
+  submitBtn.disabled=false;submitBtn.textContent='✉️ 丢进树洞';
 });
-function setStatus(msg, type) { formStatus.textContent = msg; formStatus.className = 'form-status ' + type; }
-function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
-function fmt(iso) { const d = new Date(iso); const n = new Date(); const df = n - d; if (df < 60000) return '鍒氬垰'; if (df < 3600000) return Math.floor(df / 60000) + '鍒嗛挓鍓?; if (df < 86400000) return Math.floor(df / 3600000) + '灏忔椂鍓?; return d.toLocaleDateString('zh-CN', { month: 'short', day: 'numeric', hour:'2-digit', minute:'2-digit' }); }
+function spawnLetter(){const e=document.createElement('div');e.className='flying-letter';e.textContent='✉️';e.style.left=(window.innerWidth/2-16)+'px';e.style.top=submitBtn.getBoundingClientRect().top+'px';document.body.appendChild(e);setTimeout(()=>e.remove(),1300);}
+function setStatus(m,t){formStatus.textContent=m;formStatus.className='form-status '+t;}
+function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+function fmt(iso){const d=new Date(iso),n=new Date(),df=n-d;if(df<60000)return '刚刚';if(df<3600000)return Math.floor(df/60000)+'分钟前';if(df<86400000)return Math.floor(df/3600000)+'小时前';return d.toLocaleDateString('zh-CN',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});}
 loadMessages();
 </script>
 </body>

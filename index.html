@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>一只鹈鹕的主页</title>
+<title>涓€鍙箞楣曠殑涓婚〉</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 90'%3E%3Cellipse cx='50' cy='60' rx='32' ry='28' fill='%23f0e6d3' stroke='%23d4c4a8' stroke-width='1.5'/%3E%3Ccircle cx='50' cy='22' r='16' fill='%23f5ede2' stroke='%23d4c4a8' stroke-width='1'/%3E%3Ccircle cx='56' cy='18' r='3.5' fill='%232d3436'/%3E%3Ccircle cx='57.5' cy='17' r='1.2' fill='%23fff'/%3E%3Cpath d='M64 22 Q85 18 90 28 Q86 32 68 30Z' fill='%23e8a84c' stroke='%23c07830' stroke-width='1'/%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 90'%3E%3Cellipse cx='50' cy='60' rx='32' ry='28' fill='%23f0e6d3' stroke='%23d4c4a8' stroke-width='1.5'/%3E%3Ccircle cx='50' cy='22' r='16' fill='%23f5ede2' stroke='%23d4c4a8' stroke-width='1'/%3E%3Ccircle cx='56' cy='18' r='3.5' fill='%232d3436'/%3E%3Ccircle cx='57.5' cy='17' r='1.2' fill='%23fff'/%3E%3Cpath d='M64 22 Q85 18 90 28 Q86 32 68 30Z' fill='%23e8a84c' stroke='%23c07830' stroke-width='1'/%3E%3C/svg%3E">
-<meta property="og:title" content="一只鹈鹕的主页">
-<meta property="og:description" content="这里是一只鹈鹕不知名的主页">
+<meta property="og:title" content="涓€鍙箞楣曠殑涓婚〉">
+<meta property="og:description" content="杩欓噷鏄竴鍙箞楣曚笉鐭ュ悕鐨勪富椤?>
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://yelican.cn">
 <style>
@@ -25,7 +25,7 @@
     position: relative;
   }
 
-  /* ── 波浪背景 ── */
+  /* 鈹€鈹€ 娉㈡氮鑳屾櫙 鈹€鈹€ */
   .waves {
     position: fixed; bottom: 0; left: 0; width: 100%; height: 120px;
     background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120'%3E%3Cpath fill='%2390b8d0' fill-opacity='0.25' d='M0,64L48,74.7C96,85,192,107,288,106.7C384,107,480,85,576,74.7C672,64,768,64,864,74.7C960,85,1056,107,1152,106.7C1248,107,1344,85,1392,74.7L1440,64L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z'/%3E%3C/svg%3E") repeat-x bottom;
@@ -44,7 +44,7 @@
     100% { background-position-x: 120px; }
   }
 
-  /* ── 浮动云朵 ── */
+  /* 鈹€鈹€ 娴姩浜戞湹 鈹€鈹€ */
   .cloud { position: fixed; background: rgba(255,255,255,0.6); border-radius: 50%; z-index: 0; }
   .cloud::before, .cloud::after {
     content: ''; position: absolute; background: rgba(255,255,255,0.6); border-radius: 50%;
@@ -60,7 +60,7 @@
     100% { transform: translateX(calc(100vw + 400px)); }
   }
 
-  /* ── 主卡片 ── */
+  /* 鈹€鈹€ 涓诲崱鐗?鈹€鈹€ */
   .card {
     position: relative; z-index: 1;
     text-align: center; padding: 48px 56px;
@@ -133,7 +133,7 @@
     transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.1);
   }
 
-  /* ── 鹈鹕动画区 ── */
+  /* 鈹€鈹€ 楣堥箷鍔ㄧ敾鍖?鈹€鈹€ */
   .pelican-area {
     position: fixed; bottom: 100px; left: 0; width: 100%; height: 150px;
     z-index: 1; pointer-events: none;
@@ -177,7 +177,7 @@
   .pelican:nth-child(2) .wing { animation-duration: 1.5s; }
   .pelican:nth-child(3) .wing { animation-duration: 1.8s; }
 
-  /* ── 飞行的鹈鹕 ── */
+  /* 鈹€鈹€ 椋炶鐨勯箞楣?鈹€鈹€ */
   .pelican-fly {
     position: fixed; z-index: 0; pointer-events: none;
     animation: flyAcross 20s linear infinite;
@@ -201,7 +201,7 @@
     100% { transform: rotate(-35deg); }
   }
 
-  /* ── 小信条 ── */
+  /* 鈹€鈹€ 灏忎俊鏉?鈹€鈹€ */
   .footer-note {
     position: fixed; bottom: 24px; z-index: 2;
     font-size: 13px; color: rgba(0,0,0,0.25);
@@ -217,14 +217,14 @@
 </head>
 <body>
 
-<!-- 云朵 -->
+<!-- 浜戞湹 -->
 <div class="cloud cloud-1"></div>
 <div class="cloud cloud-2"></div>
 
-<!-- 波浪 -->
+<!-- 娉㈡氮 -->
 <div class="waves"></div>
 
-<!-- 飞行的鹈鹕 -->
+<!-- 椋炶鐨勯箞楣?-->
 <div class="pelican-fly">
   <svg viewBox="0 0 80 50" width="100" height="62">
     <g class="fly-wing">
@@ -249,60 +249,64 @@
   </svg>
 </div>
 
-<!-- 主卡片 -->
+<!-- 涓诲崱鐗?-->
 <div class="card">
   <div class="avatar">
     <svg viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg">
       <g class="pelican-body">
-        <!-- 身体 -->
+        <!-- 韬綋 -->
         <ellipse cx="50" cy="60" rx="32" ry="28" fill="#f0e6d3"/>
         <ellipse cx="50" cy="60" rx="32" ry="28" fill="none" stroke="#d4c4a8" stroke-width="1.5"/>
-        <!-- 翅膀 -->
+        <!-- 缈呰唨 -->
         <path d="M28 50 Q15 40 20 30 Q25 28 30 38Z" fill="#e8d8c4" stroke="#d4c4a8" stroke-width="1"/>
         <path d="M72 50 Q85 40 80 30 Q75 28 70 38Z" fill="#e8d8c4" stroke="#d4c4a8" stroke-width="1"/>
-        <!-- 尾巴 -->
+        <!-- 灏惧反 -->
         <path d="M22 70 Q12 72 8 68 Q14 65 22 68Z" fill="#d4c4a8"/>
-        <!-- 脖子 -->
+        <!-- 鑴栧瓙 -->
         <ellipse cx="50" cy="38" rx="14" ry="16" fill="#f5ede2"/>
         <ellipse cx="50" cy="38" rx="14" ry="16" fill="none" stroke="#d4c4a8" stroke-width="1"/>
-        <!-- 头 -->
+        <!-- 澶?-->
         <circle cx="50" cy="22" r="16" fill="#f5ede2" stroke="#d4c4a8" stroke-width="1"/>
-        <!-- 眼睛 -->
+        <!-- 鐪肩潧 -->
         <circle cx="56" cy="18" r="3.5" fill="#2d3436"/>
         <circle cx="57.5" cy="17" r="1.2" fill="#fff"/>
-        <!-- 喙 - 大鹈鹕标志 -->
+        <!-- 鍠?- 澶ч箞楣曟爣蹇?-->
         <path d="M64 22 Q85 18 90 28 Q86 32 68 30Z" fill="#e8a84c" stroke="#c07830" stroke-width="1"/>
         <path d="M64 22 Q80 22 85 25" fill="none" stroke="#c07830" stroke-width="0.5"/>
-        <!-- 下喙袋 -->
+        <!-- 涓嬪枡琚?-->
         <path d="M68 30 Q78 35 82 32 Q75 38 66 34Z" fill="#f0c060" stroke="#c07830" stroke-width="0.5" opacity="0.8"/>
-        <!-- 腿 -->
+        <!-- 鑵?-->
         <line x1="40" y1="84" x2="38" y2="94" stroke="#e0a040" stroke-width="3" stroke-linecap="round"/>
         <line x1="60" y1="84" x2="62" y2="94" stroke="#e0a040" stroke-width="3" stroke-linecap="round"/>
-        <!-- 脚 -->
+        <!-- 鑴?-->
         <path d="M33 94 Q38 96 43 94" fill="none" stroke="#e0a040" stroke-width="2" stroke-linecap="round"/>
         <path d="M57 94 Q62 96 67 94" fill="none" stroke="#e0a040" stroke-width="2" stroke-linecap="round"/>
       </g>
     </svg>
   </div>
 
-  <h1>一只鹈鹕</h1>
+  <h1>涓€鍙箞楣?/h1>
   <div class="divider"></div>
   <p class="subtitle">
-    <span>这里是一只鹈鹕不知名的主页</span><br>
-    <span>还没想好干什么</span>
-    <span class="cursor">▍</span>
+    <span>杩欓噷鏄竴鍙箞楣曚笉鐭ュ悕鐨勪富椤?/span><br>
+    <span>杩樻病鎯冲ソ骞蹭粈涔?/span>
+    <span class="cursor">鈻?/span>
   </p>
 
   <div class="tags">
-    <span class="tag">👦 ENFP</span>
-    <span class="tag">♊ 双子座</span>
-    <span class="tag">🌙 深夜思想家</span>
+    <span class="tag">馃懄 ENFP</span>
+    <span class="tag">鈾?鍙屽瓙搴?/span>
+    <span class="tag">馃寵 娣卞鎬濇兂瀹?/span>
   </div>
 
   <div class="links">
     <a href="/treehole" target="_blank">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L2 12h3v8h14v-8h3L12 1zm-1 17v-6h2v6h-2zm1-8.5L15.5 13h-2.5v2h-2v-2H8.5L12 9.5z"/></svg>
-      树洞</a>
+      鏍戞礊</a>
+    <a href="https://mp.weixin.qq.com/s/f1uBLhFxr48RCwXFeUp7OQ" target="_blank">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.34 5L2 22l5.34-1.34C8.77 21.57 10.35 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.46 0-2.86-.36-4.1-1L5 20l1.36-2.7C5.48 16.12 5 14.87 5 13.5 5 9.91 8.13 6.5 12 6.5s7 3.41 7 7-3.13 7-7 7z"/><circle cx="9" cy="13" r="1.5"/><circle cx="15" cy="13" r="1.5"/></svg>
+      闃呮€濇ゼ
+    </a>
     <a href="https://github.com/Yelican" target="_blank">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
       GitHub
@@ -310,7 +314,7 @@
   </div>
 </div>
 
-<!-- 地面行走的鹈鹕 -->
+<!-- 鍦伴潰琛岃蛋鐨勯箞楣?-->
 <div class="pelican-area">
   <div class="pelican">
     <svg viewBox="0 0 70 50" width="70" height="50">
@@ -357,7 +361,8 @@
   </div>
 </div>
 
-<div class="footer-note">🐦 一只鹈鹕的互联网小窝</div>
+<div class="footer-note">馃惁 涓€鍙箞楣曠殑浜掕仈缃戝皬绐?/div>
 
 </body>
 </html>
+

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐦 鹈鹕树洞</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 90'%3E%3Cellipse cx='50' cy='60' rx='32' ry='28' fill='%23f0e6d3' stroke='%23d4c4a8' stroke-width='1.5'/%3E%3Ccircle cx='50' cy='22' r='16' fill='%23f5ede2' stroke='%23d4c4a8' stroke-width='1'/%3E%3Ccircle cx='56' cy='18' r='3.5' fill='%232d3436'/%3E%3Ccircle cx='57.5' cy='17' r='1.2' fill='%23fff'/%3E%3Cpath d='M64 22 Q85 18 90 28 Q86 32 68 30Z' fill='%23e8a84c' stroke='%23c07830' stroke-width='1'/%3E%3C/svg%3E">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    min-height: 100vh;
+    background: linear-gradient(160deg, #fdf6e3 0%, #f5e6d3 30%, #e8d5c4 60%, #d4e4f7 100%);
+    font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .waves {
+    position: fixed; bottom: 0; left: 0; width: 100%; height: 80px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80'%3E%3Cpath fill='%2390b8d0' fill-opacity='0.2' d='M0,48L48,56C96,64,192,80,288,80C384,80,480,64,576,53.3C672,43,768,37,864,42.7C960,48,1056,64,1152,69.3C1248,75,1344,69,1392,66.7L1440,64L1440,80L1392,80C1344,80,1248,80,1152,80C1056,80,960,80,864,80C768,80,672,80,576,80C480,80,384,80,288,80C192,80,96,80,48,80L0,80Z'/%3E%3C/svg%3E") repeat-x bottom;
+    background-size: 1440px 80px;
+    animation: waveMove 6s ease-in-out infinite alternate;
+    z-index: 0; pointer-events: none;
+  }
+  @keyframes waveMove { 0% { background-position-x: 0; } 100% { background-position-x: 80px; } }
+  .cloud {
+    position: fixed; background: rgba(255,255,255,0.5); border-radius: 50%; z-index: 0; pointer-events: none;
+    width: 160px; height: 50px; top: 5%; left: -180px; animation: cloudDrift 30s linear infinite;
+  }
+  .cloud::before, .cloud::after { content: ''; position: absolute; background: rgba(255,255,255,0.5); border-radius: 50%; }
+  .cloud::before { width: 70px; height: 70px; top: -35px; left: 25px; }
+  .cloud::after { width: 90px; height: 60px; top: -25px; left: 60px; }
+  @keyframes cloudDrift { 0% { transform: translateX(0); } 100% { transform: translateX(calc(100vw + 360px)); } }
+  .container { position: relative; z-index: 1; max-width: 640px; width: 100%; }
+  .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+  .top-bar a {
+    text-decoration: none; color: #636e72; font-size: 14px;
+    padding: 8px 16px; border-radius: 20px;
+    background: rgba(255,255,255,0.4); transition: all 0.2s;
+  }
+  .top-bar a:hover { background: rgba(255,255,255,0.7); color: #2d3436; }
+  .header { text-align: center; margin-bottom: 24px; animation: fadeUp 0.8s ease-out; }
+  @keyframes fadeUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+  .header .pelican-icon { font-size: 52px; display: block; margin-bottom: 8px; }
+  .header h1 { font-size: 28px; color: #2d3436; font-weight: 700; letter-spacing: 1px; }
+  .header p { color: #636e72; font-size: 14px; margin-top: 6px; }
+  .form-card {
+    background: rgba(255,255,255,0.5); backdrop-filter: blur(12px);
+    border-radius: 24px; padding: 24px;
+    border: 1px solid rgba(255,255,255,0.6);
+    margin-bottom: 24px;
+    animation: fadeUp 0.8s ease-out 0.1s both;
+  }
+  .form-row { display: flex; gap: 12px; margin-bottom: 12px; }
+  .form-row input {
+    flex: 1; padding: 10px 16px; border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.06); background: rgba(255,255,255,0.6);
+    font-size: 14px; outline: none; transition: all 0.2s; font-family: inherit;
+  }
+  .form-row input:focus { border-color: #e17055; background: #fff; }
+  .form-card textarea {
+    width: 100%; padding: 12px 16px; border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.06); background: rgba(255,255,255,0.6);
+    font-size: 14px; outline: none; resize: vertical; min-height: 80px;
+    transition: all 0.2s; font-family: inherit;
+  }
+  .form-card textarea:focus { border-color: #e17055; background: #fff; }
+  .form-bottom { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; }
+  .form-bottom .hint { font-size: 12px; color: #b2bec3; }
+  .form-bottom button {
+    padding: 10px 28px; border-radius: 24px; border: none;
+    background: linear-gradient(135deg, #e17055, #fdcb6e);
+    color: #fff; font-size: 14px; font-weight: 600; cursor: pointer;
+    transition: all 0.25s; font-family: inherit;
+  }
+  .form-bottom button:hover { transform: scale(1.04); box-shadow: 0 4px 12px rgba(225,112,85,0.3); }
+  .form-bottom button:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+  .form-status { margin-top: 8px; font-size: 13px; min-height: 20px; transition: all 0.3s; }
+  .form-status.success { color: #00b894; }
+  .form-status.error { color: #d63031; }
+  .messages { animation: fadeUp 0.8s ease-out 0.2s both; }
+  .msg-card {
+    background: rgba(255,255,255,0.4); backdrop-filter: blur(8px);
+    border-radius: 20px; padding: 18px 22px; margin-bottom: 12px;
+    border: 1px solid rgba(255,255,255,0.5); transition: all 0.2s;
+    animation: msgIn 0.4s ease-out;
+  }
+  @keyframes msgIn { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } }
+  .msg-card:hover { background: rgba(255,255,255,0.55); }
+  .msg-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .msg-name { font-weight: 600; font-size: 14px; color: #2d3436; }
+  .msg-name .anon { color: #b2bec3; font-weight: 400; font-style: italic; }
+  .msg-time { font-size: 12px; color: #b2bec3; }
+  .msg-content { font-size: 15px; color: #2d3436; line-height: 1.7; word-break: break-word; }
+  .empty-state { text-align: center; padding: 48px 20px; color: #b2bec3; font-size: 15px; line-height: 2; }
+  .empty-state .big { font-size: 48px; display: block; margin-bottom: 12px; }
+  .loading { text-align: center; padding: 32px; color: #b2bec3; }
+  .footer-note { text-align: center; padding: 24px 0 40px; font-size: 13px; color: rgba(0,0,0,0.2); position: relative; z-index: 1; }
+  @media (max-width: 480px) { .form-card { padding: 16px; } .form-row { flex-direction: column; } .header h1 { font-size: 22px; } }
+</style>
+</head>
+<body>
+<div class="cloud"></div>
+<div class="waves"></div>
+<div class="container">
+  <div class="top-bar">
+    <a href="https://yelican.cn">← 回到主页</a>
+    <a href="javascript:location.reload()">🔄 刷新</a>
+  </div>
+  <div class="header">
+    <span class="pelican-icon">🐦</span>
+    <h1>鹈鹕树洞</h1>
+    <p>说点什么吧，没人知道是你 🫣</p>
+  </div>
+  <div class="form-card">
+    <div class="form-row">
+      <input type="text" id="nameInput" placeholder="你的名字（留空匿名）" maxlength="16" autocomplete="off">
+    </div>
+    <textarea id="contentInput" placeholder="写写你的心情、秘密、或随便什么……" maxlength="1000"></textarea>
+    <div class="form-bottom">
+      <span class="hint"><span id="charCount">0</span>/1000</span>
+      <button id="submitBtn">💌 丢进树洞</button>
+    </div>
+    <div class="form-status" id="formStatus"></div>
+  </div>
+  <div class="messages" id="messageList">
+    <div class="loading">🐣 树洞正在加载……</div>
+  </div>
+  <div class="footer-note">🪹 树洞里的悄悄话 · 鹈鹕守着它们</div>
+</div>
+<script>
+const API_BASE = 'https://treehole.yuaew-0612.workers.dev';
+const nameInput = document.getElementById('nameInput');
+const contentInput = document.getElementById('contentInput');
+const submitBtn = document.getElementById('submitBtn');
+const formStatus = document.getElementById('formStatus');
+const messageList = document.getElementById('messageList');
+const charCount = document.getElementById('charCount');
+contentInput.addEventListener('input', () => { charCount.textContent = contentInput.value.length; });
+async function loadMessages() {
+  try {
+    const res = await fetch(API_BASE + '/api/list');
+    if (!res.ok) throw new Error('加载失败');
+    const msgs = await res.json();
+    if (msgs.length === 0) { messageList.innerHTML = '<div class="empty-state"><span class="big">🪹</span>树洞里还空空的<br>来做第一个留言的人吧～</div>'; return; }
+    messageList.innerHTML = msgs.map(m => {
+      const name = m.name === '匿名' ? '<span class="anon">匿名</span>' : esc(m.name);
+      const time = fmt(m.time);
+      return '<div class="msg-card"><div class="msg-head"><span class="msg-name">' + name + '</span><span class="msg-time">' + time + '</span></div><div class="msg-content">' + esc(m.content).replace(/\n/g, '<br>') + '</div></div>';
+    }).join('');
+  } catch(e) { messageList.innerHTML = '<div class="empty-state">❌ 树洞暂时打不开……</div>'; }
+}
+submitBtn.addEventListener('click', async () => {
+  const name = nameInput.value.trim();
+  const content = contentInput.value.trim();
+  if (!content) { setStatus('说点什么再丢嘛～', 'error'); return; }
+  submitBtn.disabled = true; submitBtn.textContent = '⏳ 飞进去……'; setStatus('', '');
+  try {
+    const res = await fetch(API_BASE + '/api/save', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, content }) });
+    const data = await res.json();
+    if (!res.ok) { setStatus(data.error || '发送失败了', 'error'); submitBtn.disabled = false; submitBtn.textContent = '💌 丢进树洞'; return; }
+    setStatus('✅ 你的悄悄话已经飞进树洞啦！', 'success');
+    contentInput.value = ''; charCount.textContent = '0';
+    setTimeout(loadMessages, 500);
+  } catch(e) { setStatus('网络开小差了，再试试？', 'error'); }
+  submitBtn.disabled = false; submitBtn.textContent = '💌 丢进树洞';
+});
+function setStatus(msg, type) { formStatus.textContent = msg; formStatus.className = 'form-status ' + type; }
+function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+function fmt(iso) { const d = new Date(iso); const n = new Date(); const df = n - d; if (df < 60000) return '刚刚'; if (df < 3600000) return Math.floor(df / 60000) + '分钟前'; if (df < 86400000) return Math.floor(df / 3600000) + '小时前'; return d.toLocaleDateString('zh-CN', { month: 'short', day: 'numeric', hour:'2-digit', minute:'2-digit' }); }
+loadMessages();
+</script>
+</body>
+</html>

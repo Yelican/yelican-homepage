@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>鹈鹕树洞</title>
+<title>楣堥箷鏍戞礊</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 90'%3E%3Cellipse cx='50' cy='60' rx='32' ry='28' fill='%23f0e6d3' stroke='%23d4c4a8' stroke-width='1.5'/%3E%3Ccircle cx='50' cy='22' r='16' fill='%23f5ede2' stroke='%23d4c4a8' stroke-width='1'/%3E%3Ccircle cx='56' cy='18' r='3.5' fill='%232d3436'/%3E%3Ccircle cx='57.5' cy='17' r='1.2' fill='%23fff'/%3E%3Cpath d='M64 22 Q85 18 90 28 Q86 32 68 30Z' fill='%23e8a84c' stroke='%23c07830' stroke-width='1'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
@@ -29,7 +29,7 @@ body {
     padding: 20px;
 }
 
-/* 照片背景 */
+/* 鐓х墖鑳屾櫙 */
 .photo-bg {
     position: fixed; inset: 0; z-index: 0;
 }
@@ -49,7 +49,7 @@ body {
     );
 }
 
-/* 波浪 */
+/* 娉㈡氮 */
 .waves {
     position: fixed; bottom: 0; left: 0; width: 100%; height: 140px;
     background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120'%3E%3Cpath fill='%2382aac8' fill-opacity='0.2' d='M0,64L48,74.7C96,85,192,107,288,106.7C384,107,480,85,576,74.7C672,64,768,64,864,74.7C960,85,1056,107,1152,106.7C1248,107,1344,85,1392,74.7L1440,64L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z'/%3E%3C/svg%3E") repeat-x bottom;
@@ -68,7 +68,7 @@ body {
     100% { background-position-x: 140px; }
 }
 
-/* 云朵 */
+/* 浜戞湹 */
 .cloud { position: fixed; background: rgba(255,255,255,0.45); border-radius: 50%; z-index: 1; filter: blur(1px); }
 .cloud::before, .cloud::after { content: ''; position: absolute; background: rgba(255,255,255,0.45); border-radius: 50%; }
 .cloud-1 { width: 200px; height: 65px; top: 10%; left: -220px; animation: cloudDrift 28s linear infinite; }
@@ -82,10 +82,10 @@ body {
     100% { transform: translateX(calc(100vw + 500px)); }
 }
 
-/* 主容器 */
+/* 涓诲鍣?*/
 .container { position: relative; z-index: 2; max-width: 640px; width: 100%; margin: 0 auto; }
 
-/* 顶部导航 */
+/* 椤堕儴瀵艰埅 */
 .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
 .top-bar a {
     text-decoration: none; color: var(--ink-light); font-size: 13.5px; font-weight: 500;
@@ -103,7 +103,7 @@ body {
 }
 .top-bar a svg { width: 16px; height: 16px; }
 
-/* 头部 */
+/* 澶撮儴 */
 .header { text-align: center; margin-bottom: 28px; animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; opacity: 0; transform: translateY(20px); }
 @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
@@ -118,7 +118,7 @@ body {
 }
 .header p { color: var(--ink-light); font-size: 14px; margin-top: 6px; }
 
-/* 卡片通用 */
+/* 鍗＄墖閫氱敤 */
 .card {
     background: var(--glass-bg);
     backdrop-filter: blur(24px) saturate(1.3);
@@ -131,7 +131,7 @@ body {
         0 2px 6px rgba(0,0,0,0.03);
 }
 
-/* 表单卡片 */
+/* 琛ㄥ崟鍗＄墖 */
 .form-card { padding: 24px; margin-bottom: 20px; animation: fadeUp 0.8s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both; }
 .form-row { display: flex; gap: 12px; margin-bottom: 12px; }
 .form-row input {
@@ -179,7 +179,7 @@ body {
 .form-status.success { color: #4a7c59; }
 .form-status.error { color: #c0392b; }
 
-/* 飞信动画 */
+/* 椋炰俊鍔ㄧ敾 */
 .flying-letter {
     position: fixed; z-index: 999; pointer-events: none;
     font-size: 32px;
@@ -191,7 +191,7 @@ body {
     100% { transform: translateY(100vh) scale(0.2); opacity: 0; }
 }
 
-/* 消息列表 */
+/* 娑堟伅鍒楄〃 */
 .messages { animation: fadeUp 0.8s 0.2s cubic-bezier(0.22, 1, 0.36, 1) both; }
 
 .msg-card {
@@ -222,19 +222,19 @@ body {
 .msg-time { font-size: 12px; color: var(--ink-light); opacity: 0.5; }
 .msg-content { font-size: 15px; color: var(--ink); line-height: 1.7; word-break: break-word; }
 
-/* 空状态 */
+/* 绌虹姸鎬?*/
 .empty-state { text-align: center; padding: 48px 20px; color: var(--ink-light); font-size: 15px; line-height: 2; opacity: 0.7; }
 .empty-state .big { font-size: 44px; display: block; margin-bottom: 12px; }
 .loading { text-align: center; padding: 32px; color: var(--ink-light); opacity: 0.5; }
 
-/* 页脚 */
+/* 椤佃剼 */
 .footer-note {
     text-align: center; padding: 24px 0 48px;
     font-size: 12.5px; color: rgba(44, 62, 80, 0.25);
     letter-spacing: 0.5px;
 }
 
-/* 响应式 */
+/* 鍝嶅簲寮?*/
 @media (max-width: 560px) {
     body { padding: 16px; }
     .header h1 { font-size: 22px; }
@@ -245,7 +245,7 @@ body {
     .msg-card { padding: 14px 16px; }
 }
 
-/* 深色模式 */
+/* 娣辫壊妯″紡 */
 @media (prefers-color-scheme: dark) {
     :root {
         --sand: #1a1f2e;
@@ -284,33 +284,33 @@ body {
 </head>
 <body>
 
-<!-- 照片背景 -->
+<!-- 鐓х墖鑳屾櫙 -->
 <div class="photo-bg">
     <img src="../bg.jpg" alt="" loading="eager">
     <div class="photo-overlay"></div>
 </div>
 
-<!-- 云朵 -->
+<!-- 浜戞湹 -->
 <div class="cloud cloud-1"></div>
 <div class="cloud cloud-2"></div>
 
-<!-- 波浪 -->
+<!-- 娉㈡氮 -->
 <div class="waves"></div>
 
 <div class="container">
-    <!-- 顶部导航 -->
+    <!-- 椤堕儴瀵艰埅 -->
     <div class="top-bar">
         <a href="https://yelican.cn">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
-            回到主页
+            鍥炲埌涓婚〉
         </a>
         <a href="javascript:location.reload()">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
-            刷新
+            鍒锋柊
         </a>
     </div>
 
-    <!-- 头部 -->
+    <!-- 澶撮儴 -->
     <div class="header">
         <span class="pelican-icon">
             <svg viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg">
@@ -332,36 +332,36 @@ body {
                 <path d="M57 94 Q62 96 67 94" fill="none" stroke="#d49540" stroke-width="1.8" stroke-linecap="round"/>
             </svg>
         </span>
-        <h1>鹈鹕树洞</h1>
-        <p>🍃 把心事丢进树洞，风会替你保管</p>
+        <h1>楣堥箷鏍戞礊</h1>
+        <p>馃崈 鎶婂績浜嬩涪杩涙爲娲烇紝椋庝細鏇夸綘淇濈</p>
     </div>
 
-    <!-- 表单 -->
+    <!-- 琛ㄥ崟 -->
     <div class="form-card card">
         <div class="form-row">
-            <input type="text" id="nameInput" placeholder="你的名字（留空匿名）" maxlength="16" autocomplete="off">
+            <input type="text" id="nameInput" placeholder="浣犵殑鍚嶅瓧锛堢暀绌哄尶鍚嶏級" maxlength="16" autocomplete="off">
         </div>
-        <textarea id="contentInput" placeholder="写写你的心情、秘密、或随便什么…" maxlength="1000"></textarea>
+        <textarea id="contentInput" placeholder="鍐欏啓浣犵殑蹇冩儏銆佺瀵嗐€佹垨闅忎究浠€涔堚€? maxlength="1000"></textarea>
         <div class="form-bottom">
             <span class="hint"><span id="charCount">0</span>/1000</span>
             <button id="submitBtn">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-                丢进树洞
+                涓㈣繘鏍戞礊
             </button>
         </div>
         <div class="form-status" id="formStatus"></div>
     </div>
 
-    <!-- 消息列表 -->
+    <!-- 娑堟伅鍒楄〃 -->
     <div class="messages" id="messageList">
-        <div class="loading">🍂 树洞正在加载…</div>
+        <div class="loading">馃崅 鏍戞礊姝ｅ湪鍔犺浇鈥?/div>
     </div>
 
-    <div class="footer-note">🌿 树洞深处，藏着无数的秘密</div>
+    <div class="footer-note">馃尶 鏍戞礊娣卞锛岃棌鐫€鏃犳暟鐨勭瀵?/div>
 </div>
 
 <script>
-const API_BASE='';
+const API_BASE='https://treehole.yuaew-0612.workers.dev';
 const nameInput=document.getElementById('nameInput');
 const contentInput=document.getElementById('contentInput');
 const submitBtn=document.getElementById('submitBtn');
@@ -377,47 +377,47 @@ async function loadMessages(){
     if(!r.ok) throw Error();
     const m=await r.json();
     if(!m.length){
-      messageList.innerHTML='<div class="empty-state"><span class="big">🕳️</span>树洞里还空空的<br>来做第一个留言的人吧</div>';
+      messageList.innerHTML='<div class="empty-state"><span class="big">馃暢锔?/span>鏍戞礊閲岃繕绌虹┖鐨?br>鏉ュ仛绗竴涓暀瑷€鐨勪汉鍚?/div>';
       return;
     }
     messageList.innerHTML=m.map(x=>{
-      const n=x.name==='匿名'?'<span class="anon">匿名</span>':esc(x.name);
+      const n=x.name==='鍖垮悕'?'<span class="anon">鍖垮悕</span>':esc(x.name);
       return '<div class="msg-card"><div class="msg-head"><span class="msg-name">'+n+'</span><span class="msg-time">'+fmt(x.time)+'</span></div><div class="msg-content">'+esc(x.content).replace(/\n/g,'<br>')+'</div></div>';
     }).join('');
   } catch(e){
-    messageList.innerHTML='<div class="empty-state">😢 树洞暂时打不开…</div>';
+    messageList.innerHTML='<div class="empty-state">馃槩 鏍戞礊鏆傛椂鎵撲笉寮€鈥?/div>';
   }
 }
 
 submitBtn.addEventListener('click',async()=>{
   const n=nameInput.value.trim(),c=contentInput.value.trim();
-  if(!c){setStatus('说点什么再丢呀～','error');return;}
+  if(!c){setStatus('璇寸偣浠€涔堝啀涓㈠憖锝?,'error');return;}
   submitBtn.disabled=true;
-  submitBtn.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="animation:spin 1s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> 飞进去…';
+  submitBtn.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="animation:spin 1s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> 椋炶繘鍘烩€?;
   setStatus('','');spawnLetter();
   try{
     const r=await fetch(API_BASE+'/api/save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,content:c})});
     const d=await r.json();
     if(!r.ok){
-      setStatus(d.error||'发送失败了','error');
+      setStatus(d.error||'鍙戦€佸け璐ヤ簡','error');
       submitBtn.disabled=false;
-      submitBtn.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg> 丢进树洞';
+      submitBtn.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg> 涓㈣繘鏍戞礊';
       return;
     }
-    setStatus('✅ 信已飞入树洞深处 🌿','success');
+    setStatus('鉁?淇″凡椋炲叆鏍戞礊娣卞 馃尶','success');
     contentInput.value='';charCount.textContent='0';
     setTimeout(loadMessages,600);
   } catch(e){
-    setStatus('网络开小差了，再试试？','error');
+    setStatus('缃戠粶寮€灏忓樊浜嗭紝鍐嶈瘯璇曪紵','error');
   }
   submitBtn.disabled=false;
-  submitBtn.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg> 丢进树洞';
+  submitBtn.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg> 涓㈣繘鏍戞礊';
 });
 
 function spawnLetter(){
   const e=document.createElement('div');
   e.className='flying-letter';
-  e.textContent='💌';
+  e.textContent='馃拰';
   e.style.left=(window.innerWidth/2-16)+'px';
   e.style.top=submitBtn.getBoundingClientRect().top+'px';
   document.body.appendChild(e);
@@ -435,13 +435,13 @@ function esc(s){
 }
 function fmt(iso){
   const d=new Date(iso),n=new Date(),df=n-d;
-  if(df<60000) return '刚刚';
-  if(df<3600000) return Math.floor(df/60000)+'分钟前';
-  if(df<86400000) return Math.floor(df/3600000)+'小时前';
+  if(df<60000) return '鍒氬垰';
+  if(df<3600000) return Math.floor(df/60000)+'鍒嗛挓鍓?;
+  if(df<86400000) return Math.floor(df/3600000)+'灏忔椂鍓?;
   return d.toLocaleDateString('zh-CN',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
 }
 
-// 添加旋转动画
+// 娣诲姞鏃嬭浆鍔ㄧ敾
 const spinStyle=document.createElement('style');
 spinStyle.textContent='@keyframes spin{to{transform:rotate(360deg)}}';
 document.head.appendChild(spinStyle);

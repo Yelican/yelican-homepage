@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>一只鹈鹕的主页</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 90'%3E%3Cellipse cx='50' cy='60' rx='32' ry='28' fill='%23f0e6d3' stroke='%23d4c4a8' stroke-width='1.5'/%3E%3Ccircle cx='50' cy='22' r='16' fill='%23f5ede2' stroke='%23d4c4a8' stroke-width='1'/%3E%3Ccircle cx='56' cy='18' r='3.5' fill='%232d3436'/%3E%3Ccircle cx='57.5' cy='17' r='1.2' fill='%23fff'/%3E%3Cpath d='M64 22 Q85 18 90 28 Q86 32 68 30Z' fill='%23e8a84c' stroke='%23c07830' stroke-width='1'/%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='4' y='4' width='92' height='92' rx='20' fill='%23c4785a'/%3E%3Cpath d='M38 92C38 92 36 86 38 82C40 78 42 75 42 70C42 65 40 62 38 58C35 52 32 48 30 42C28 36 28 30 30 24C32 18 36 14 42 12C48 10 54 10 58 14C62 18 64 24 64 30C64 34 68 36 72 38C76 40 80 42 82 46C84 50 82 54 78 56C74 58 68 58 64 56C60 54 58 56 58 60C58 64 60 68 62 72C64 76 64 80 62 84C60 88 58 92 58 92L38 92Z' fill='%23f7f3ee'/%3E%3Ccircle cx='54' cy='22' r='2.5' fill='%23f7f3ee'/%3E%3Ccircle cx='54.8' cy='21.2' r='0.8' fill='%23c4785a'/%3E%3C/svg%3E">
     <meta property="og:title" content="一只鹈鹕的主页">
     <meta property="og:description" content="这里是一只鹈鹕不知名的主页">
     <meta property="og:type" content="website">
@@ -43,15 +43,23 @@
         /* ========== 照片背景 ========== */
         .photo-bg {
             position: fixed;
-            inset: 0;
+            top: 0; left: 0;
+            width: 100vw;
+            height: 100vh;
             z-index: 0;
+            overflow: hidden;
+            background: #d4c8bc;
         }
         .photo-bg img {
+            position: absolute;
+            top: 0; left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: center 30%;
             filter: saturate(0.6) contrast(0.9) brightness(1.05);
+            transform: scale(1.12);
+            will-change: transform;
         }
         .photo-overlay {
             position: absolute;
@@ -126,13 +134,6 @@
             position: relative;
         }
         .avatar svg { width: 100%; height: 100%; }
-
-        /* 轻微呼吸动画 */
-        .pelican-body-group { animation: breathe 4s ease-in-out infinite; transform-origin: center bottom; }
-        @keyframes breathe {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-        }
 
         h1 {
             font-family: 'Playfair Display', Georgia, serif;
@@ -361,38 +362,40 @@
 <!-- 主卡片 -->
 <div class="card">
     <div class="avatar">
-        <!-- 重新设计的鹈鹕 SVG，保留原版特征但更有设计感 -->
-        <svg viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg">
-            <g class="pelican-body-group">
-                <!-- 身体阴影 -->
-                <ellipse cx="52" cy="62" rx="30" ry="24" fill="rgba(0,0,0,0.04)"/>
-                <!-- 身体 -->
-                <ellipse cx="50" cy="60" rx="30" ry="26" fill="#f0e6d3" stroke="#d4c4a8" stroke-width="1.2"/>
-                <!-- 翅膀（左） -->
-                <path d="M28 50 Q14 40 18 30 Q22 28 28 40Z" fill="#e8d8c4" stroke="#d4c4a8" stroke-width="0.8"/>
-                <!-- 翅膀（右） -->
-                <path d="M72 50 Q86 40 82 30 Q78 28 72 40Z" fill="#e8d8c4" stroke="#d4c4a8" stroke-width="0.8"/>
-                <!-- 尾巴 -->
-                <path d="M22 70 Q10 73 6 68 Q14 64 22 67Z" fill="#d4c4a8"/>
-                <!-- 脖子 -->
-                <ellipse cx="50" cy="38" rx="13" ry="15" fill="#f5ede2" stroke="#d4c4a8" stroke-width="0.8"/>
-                <!-- 头 -->
-                <circle cx="50" cy="22" r="15" fill="#f5ede2" stroke="#d4c4a8" stroke-width="0.8"/>
-                <!-- 眼睛 -->
-                <circle cx="56" cy="18" r="3.2" fill="#2c3e50"/>
-                <circle cx="57.2" cy="16.8" r="1.1" fill="#fff"/>
-                <!-- 喙 - 标志性大鹈鹕嘴 -->
-                <path d="M63 21 Q85 16 90 26 Q86 31 66 29Z" fill="#e8a84c" stroke="#c07830" stroke-width="0.8"/>
-                <path d="M63 21 Q80 20 84 23" fill="none" stroke="#c07830" stroke-width="0.5"/>
-                <!-- 下喙袋 -->
-                <path d="M67 29 Q78 34 82 31 Q74 37 65 33Z" fill="#f0c060" stroke="#c07830" stroke-width="0.5" opacity="0.85"/>
-                <!-- 腿 -->
-                <line x1="40" y1="84" x2="38" y2="94" stroke="#d49540" stroke-width="2.5" stroke-linecap="round"/>
-                <line x1="60" y1="84" x2="62" y2="94" stroke="#d49540" stroke-width="2.5" stroke-linecap="round"/>
-                <!-- 蹼 -->
-                <path d="M33 94 Q38 96 43 94" fill="none" stroke="#d49540" stroke-width="1.8" stroke-linecap="round"/>
-                <path d="M57 94 Q62 96 67 94" fill="none" stroke="#d49540" stroke-width="1.8" stroke-linecap="round"/>
-            </g>
+        <!-- 负空间剪影鹈鹕 Logo -->
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <clipPath id="pelican-clip">
+                    <!-- 鹈鹕剪影（负空间镂空） -->
+                    <path d="M38 92
+                             C38 92, 36 86, 38 82
+                             C40 78, 42 75, 42 70
+                             C42 65, 40 62, 38 58
+                             C35 52, 32 48, 30 42
+                             C28 36, 28 30, 30 24
+                             C32 18, 36 14, 42 12
+                             C48 10, 54 10, 58 14
+                             C62 18, 64 24, 64 30
+                             C64 34, 68 36, 72 38
+                             C76 40, 80 42, 82 46
+                             C84 50, 82 54, 78 56
+                             C74 58, 68 58, 64 56
+                             C60 54, 58 56, 58 60
+                             C58 64, 60 68, 62 72
+                             C64 76, 64 80, 62 84
+                             C60 88, 58 92, 58 92
+                             L38 92Z"/>
+                    <!-- 眼睛（实心圆，不被镂空） -->
+                    <circle cx="54" cy="22" r="2.5"/>
+                </clipPath>
+            </defs>
+            <!-- 圆角方形背景 -->
+            <rect x="2" y="2" width="96" height="96" rx="22" fill="#c4785a"/>
+            <!-- 负空间鹈鹕（用背景色填充剪影区域 = 镂空效果） -->
+            <rect x="0" y="0" width="100" height="100" fill="#f7f3ee" clip-path="url(#pelican-clip)"/>
+            <!-- 眼睛高光 -->
+            <circle cx="54" cy="22" r="2.5" fill="#f7f3ee"/>
+            <circle cx="54.8" cy="21.2" r="0.8" fill="#c4785a"/>
         </svg>
     </div>
 
@@ -513,14 +516,16 @@
     }
     setTimeout(type, 600);
 
-    // 背景照片微视差
-    document.addEventListener('mousemove', (e) => {
-        const bg = document.querySelector('.photo-bg img');
-        if (!bg) return;
-        const x = (e.clientX / window.innerWidth - 0.5) * 6;
-        const y = (e.clientY / window.innerHeight - 0.5) * 6;
-        bg.style.transform = `scale(1.03) translate(${-x}px, ${-y}px)`;
-    });
+    // 背景照片微视差（仅桌面端）
+    if (!window.matchMedia('(pointer: coarse)').matches) {
+        document.addEventListener('mousemove', (e) => {
+            const bg = document.querySelector('.photo-bg img');
+            if (!bg) return;
+            const x = (e.clientX / window.innerWidth - 0.5) * 6;
+            const y = (e.clientY / window.innerHeight - 0.5) * 6;
+            bg.style.transform = `scale(1.12) translate(${-x}px, ${-y}px)`;
+        });
+    }
 </script>
 
 </body>
